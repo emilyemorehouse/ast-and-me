@@ -1,49 +1,837 @@
 <!doctype html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>reveal.js</title>
+        <title>reveal.js</title>
 
-		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/black.css">
+        <link rel="stylesheet" href="css/reveal.css">
+        <link rel="stylesheet" href="css/theme/cuttlesoft.css">
 
-		<!-- Theme used for syntax highlighting of code -->
-		<link rel="stylesheet" href="lib/css/zenburn.css">
+        <!-- Theme used for syntax highlighting of code -->
+        <link rel="stylesheet" href="lib/css/zenburn.css">
 
-		<!-- Printing and PDF exports -->
-		<script>
-			var link = document.createElement( 'link' );
-			link.rel = 'stylesheet';
-			link.type = 'text/css';
-			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
-			document.getElementsByTagName( 'head' )[0].appendChild( link );
-		</script>
-	</head>
-	<body>
-		<div class="reveal">
-			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
-			</div>
-		</div>
+        <!-- Printing and PDF exports -->
+        <script>
+            var link = document.createElement( 'link' );
+            link.rel = 'stylesheet';
+            link.type = 'text/css';
+            link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+            document.getElementsByTagName( 'head' )[0].appendChild( link );
+        </script>
+    </head>
+    <body>
+        <div class="reveal">
+            <div class="slides">
+            <!--
+                Abstract/Elevator Pitch (max 300 characters):
+                Get under the hood and learn about Python's beloved Abstract Syntax Tree. We'll discuss the AST's role in Python's compilation process, how it affects Bytecode, and how you can use it's optimizations to improve your code's speed at runtime. Write better code!
 
-		<script src="lib/js/head.min.js"></script>
-		<script src="js/reveal.js"></script>
+                Description:
+                Python is a wonderfully accessible language for novice and veteran programmers alike. Understanding how Python works can be a key step in writing better code.
 
-		<script>
-			// More info about config & dependencies:
-			// - https://github.com/hakimel/reveal.js#configuration
-			// - https://github.com/hakimel/reveal.js#dependencies
-			Reveal.initialize({
-				dependencies: [
-					{ src: 'plugin/markdown/marked.js' },
-					{ src: 'plugin/markdown/markdown.js' },
-					{ src: 'plugin/notes/notes.js', async: true },
-					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
-				]
-			});
-		</script>
-	</body>
+                Ever wonder how Python code is run? Overheard people arguing about whether Python is interpreted or compiled? In this talk, we will delve into the lifecycle of a piece of Python code in order to understand the role that Python's Abstract Syntax Tree plays in shaping the runtime of your code. Utilizing your newfound knowledge of AST optimizations, you will better understand how Python code is compiled in order to write better code.
+             -->
+            <!-- 1 - INTRODUCTION AND OUTLINE -->
+                <!--
+                    * Intro (1 minute)
+                        - Quick introduction of me and my motivation for giving this talk
+                 -->
+                <section>
+                    <h1>The AST and Me</h1>
+                </section>
+
+                <section class="intro">
+                    <img class="intro__image" data-src="img/intro/me.jpg">
+                    <h3 class="left dark-shadow" style="margin-left:300px;">Emily Morehouse</h3>
+                    <h5 class="left dark-shadow" style="margin-left:300px;">Co-Founder, Director of Engineering</h5>
+                    <h5 class="left dark-shadow" style="margin-left:300px;">@ Cuttlesoft</h5>
+                    <ul class="intro__ul dark-shadow">
+                        <li class="intro__li intro__li--marker"">
+                            Denver, CO
+                        </li>
+                        <li class="intro__li intro__li--twitter"">
+                            <a href="https://twitter.com/emilyemorehouse" target="_blank">@emilyemorehouse</a>
+                        </li>
+                        <li class="intro__li intro__li--github"">
+                            <a href="https://github.com/emilyemorehouse" target="_blank">emilyemorehouse</a>
+                        </li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h4>We're going to cover:</h4>
+                    <ul>
+                        <li>Why Python Internals matter</li>
+                        <li>Life cycle of a piece of Python code</li>
+                        <li>Inspecting Python code at various stages</li>
+                        <li>Current Python optimizations</li>
+                        <li>Practical applications</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h4>What you should get out of this talk:</h4>
+                    <ul>
+                        <li>An understanding of how Python works.*</li>
+                        <li>Knowledge of how to interact with Python's AST and bytecode</li>
+                        <li>Taste of what you can do</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h4>What spurred this?</h4>
+                    <p>A Tangent of CPython Contributions!</p>
+                </section>
+            <!-- 2 - WHY? -->
+                <!--
+                    * Why should you care about Python internals? (2 minutes)
+                        - Why a bit of knowledge about Python internals goes a long way - from code speedups to understanding tracebacks
+                 -->
+                <section class="why" data-transition="fade">
+                    Should you care about Python internals?
+                    <img class="why__gif" data-src="img/gifs/sunny.gif" />
+                    <img class="why__gif why__gif--hidden" data-src="img/gifs/sunny2.gif" loop="infinite" />
+
+                    <aside class="notes">
+                        * Why should you care about Python internals? (2 minutes)
+                            - Why a bit of knowledge about Python internals goes a long way - from code speedups to understanding tracebacks
+                    </aside>
+                </section>
+
+                <section class="why" data-transition="fade">
+                    Should you care about Python internals?
+                    <img class="why__gif" data-src="img/gifs/sunny.gif" />
+                    <img class="why__gif" data-src="img/gifs/sunny2.gif" loop="infinite" />
+
+                    <aside class="notes">
+                        * Why should you care about Python internals? (2 minutes)
+                            - Why a bit of knowledge about Python internals goes a long way - from code speedups to understanding tracebacks
+                    </aside>
+                </section>
+            <!-- 3 - OVERVIEW -->
+                <!--
+                    * A brief overview of compiling a piece of Python code - from source code through bytecode and execution, focusing on the role of the AST. 5,000-foot overview. (3 minutes)
+                    - Build an understanding of the broad steps it takes to compile a piece of Python code
+                -->
+                <section class="overview" data-background="img/car.jpg">
+                    <h2>A Peek Under The Hood</h2>
+                </section>
+
+                <section class="overview">
+                    <h2>From Source Code To Execution:</h2>
+                    <aside class="notes">
+                        <ul><li>A brief overview of compiling a piece of Python code - from source code through bytecode and execution, focusing on the role of the AST. 5,000-foot overview. (3 minutes)
+                                <ul><li>Build an understanding of the broad steps it takes to compile a piece of Python code</li></ul>
+                        </li></ul>
+                    </aside>
+                </section>
+
+                <section class="overview" data-transition="fade">
+                    <header class="overview__header">From Source Code To Execution:</header>
+                    <h2>Q: Interpreted or compiled?</h2>
+                </section>
+
+                <section class="overview" data-transition="fade">
+                    <header class="overview__header">From Source Code To Execution:</header>
+                    <h2>A: Both!<h2>
+                    <aside class="notes">
+                        Compiling is generating the code objects, including the bytecode. Interpreting is making sense of the bytecode in order to actually make things happen. One of the ways in which Python is “dynamic” is that the same bytecode doesn’t always have the same effect.
+                    </aside>
+                </section>
+
+                <section class="overview" data-transition="fade">
+                    <h4>Compiler → Generates Bytecode</h4>
+                    <h4>Interpreter → Executes Bytecode</h4>
+
+                    <aside class="notes">
+                        Compiling is generating the code objects, including the bytecode. Interpreting is making sense of the bytecode in order to actually make things happen. One of the ways in which Python is “dynamic” is that the same bytecode doesn’t always have the same effect.
+                    </aside>
+                </section>
+            <!-- 3B -  LIFECYCLE -->
+                <section class="lifecycle">
+                    <h2>Life Cycle of a Piece of Python Code</h2>
+                </section>
+
+                <section class="lifecycle" data-transition="fade">
+                    <header class="lifecycle__header">Life Cycle of a Piece of Python Code</header>
+                    <ul>
+                        <li>Parse source code into a parse tree (AKA CST)</li>
+                        <li class="hidden">Transform parse tree into an Abstract Syntax Tree</li>
+                        <li class="hidden">Transform AST into a Control Flow Graph</li>
+                        <li class="hidden">Emit bytecode based on the Control Flow Graph</li>
+                        <li class="hidden">Interpret the bytecode</li>
+                    </ul>
+                    <aside class="notes">
+                        CSTs - Concrete Syntax Trees (a.k.a. Parse Trees) and ASTs - Abstract Syntax Trees (a.k.a. Syntax Trees)
+
+                        CST - a one-to-one mapping from the grammar to a tree-form.
+                        AST - does not show syntax, instead shows the underlying objects in a structured way
+                    </aside>
+                </section>
+
+                <section class="lifecycle" data-transition="fade">
+                    <header class="lifecycle__header">Life Cycle of a Piece of Python Code</header>
+                    <ul>
+                        <li>Parse source code into a parse tree (AKA CST)</li>
+                        <li>Transform parse tree into an Abstract Syntax Tree</li>
+                        <li class="hidden">Transform AST into a Control Flow Graph</li>
+                        <li class="hidden">Emit bytecode based on the Control Flow Graph</li>
+                        <li class="hidden">Interpret the bytecode</li>
+                    </ul>
+                    <aside class="notes">
+                        CSTs - Concrete Syntax Trees (a.k.a. Parse Trees) and ASTs - Abstract Syntax Trees (a.k.a. Syntax Trees)
+
+                        CST - a one-to-one mapping from the grammar to a tree-form.
+                        AST - does not show syntax, instead shows the underlying objects in a structured way
+                    </aside>
+                </section>
+
+                <section class="lifecycle" data-transition="fade">
+                    <header class="lifecycle__header">Life cycle of a Piece of Python Code</header>
+                    <ul>
+                        <li>Parse source code into a parse tree (AKA CST)</li>
+                        <li>Transform parse tree into an Abstract Syntax Tree</li>
+                        <li>Transform AST into a Control Flow Graph</li>
+                        <li class="hidden">Emit bytecode based on the Control Flow Graph</li>
+                        <li class="hidden">Interpret the bytecode</li>
+                    </ul>
+                    <aside class="notes">
+                        CSTs - Concrete Syntax Trees (a.k.a. Parse Trees) and ASTs - Abstract Syntax Trees (a.k.a. Syntax Trees)
+
+                        CST - a one-to-one mapping from the grammar to a tree-form.
+                        AST - does not show syntax, instead shows the underlying objects in a structured way
+                    </aside>
+                </section>
+
+                <section class="lifecycle" data-transition="fade">
+                    <header class="lifecycle__header">Life cycle of a Piece of Python Code</header>
+                    <ul>
+                        <li>Parse source code into a parse tree (AKA CST)</li>
+                        <li>Transform parse tree into an Abstract Syntax Tree</li>
+                        <li>Transform AST into a Control Flow Graph</li>
+                        <li>Emit bytecode based on the Control Flow Graph</li>
+                        <li class="hidden">Interpret the bytecode</li>
+                    </ul>
+                    <aside class="notes">
+                        CSTs - Concrete Syntax Trees (a.k.a. Parse Trees) and ASTs - Abstract Syntax Trees (a.k.a. Syntax Trees)
+
+                        CST - a one-to-one mapping from the grammar to a tree-form.
+                        AST - does not show syntax, instead shows the underlying objects in a structured way
+                    </aside>
+                </section>
+
+                <section class="lifecycle" data-transition="fade">
+                    <header class="lifecycle__header">Life cycle of a Piece of Python Code</header>
+                    <ul>
+                        <li>Parse source code into a parse tree (AKA CST)</li>
+                        <li>Transform parse tree into an Abstract Syntax Tree</li>
+                        <li>Transform AST into a Control Flow Graph</li>
+                        <li>Emit bytecode based on the Control Flow Graph</li>
+                        <li>Interpret the bytecode</li>
+                    </ul>
+                    <aside class="notes">
+                        CSTs - Concrete Syntax Trees (a.k.a. Parse Trees) and ASTs - Abstract Syntax Trees (a.k.a. Syntax Trees)
+
+                        CST - a one-to-one mapping from the grammar to a tree-form.
+                        AST - does not show syntax, instead shows the underlying objects in a structured way
+                    </aside>
+                </section>
+            <!-- 3C -  WHAT IS AN AST? -->
+                <section class="ast">
+                    <h2>What is an Abstract Syntax Tree?</h2>
+                </section>
+
+                <section class="ast">
+                    <header class="ast__header">What is an Abstract Syntax Tree?</header>
+                    <p>Tree representing the syntax and structure of source code.</p>
+                </section>
+            <!-- 4 - AST AND DIS MODULES - PART 1 -->
+                <!--
+                    * Using the AST module to inspect a piece of code (4 minutes) (*This section will go through some trial and error when preparing and it may be best to simplify for brevity. Less code with better understanding is better, using `dis` may muddy the waters)
+                    - Code examples of:
+                        - Using the built-in AST module to inspect a few small piece of code
+                        - Using dis to inspect the bytecode from the example
+                        - Running the dissected code
+                -->
+                <section class="demo dig">
+                    <h2>Let's dig in.</h2>
+                    <img class="dig__image" data-src="img/gifs/digging puppy tree.gif" />
+                    <aside class="notes">
+                        We're going to walk through the the life cycle of a piece of Python code.
+                    </aside>
+                </section>
+
+                <section class="demo" data-transition="fade">
+                    <h2>Primary Tools:</h2>
+                    <aside class="notes">
+                        These are built-in to the Python standard library.
+                    </aside>
+                </section>
+
+                <section class="demo" data-transition="fade">
+                    <header class="demo__header">Primary Tools:</header>
+                    <ul>
+                        <li>ast module</li>
+                        <li class="hidden">dis module</li>
+                    </ul>
+                </section>
+
+                <section class="demo" data-transition="fade">
+                    <header class="demo__header">Primary Tools:</header>
+                    <ul>
+                        <li>ast module</li>
+                        <li>dis module</li>
+                    </ul>
+                </section>
+
+                <section class="demo" data-transition="fade">
+                    <h2>Secondary Libraries:</h2>
+                </section>
+
+                <section class="demo" data-transition="fade">
+                    <header class="demo__header">Secondary Libraries:</header>
+                    <ul>
+                        <li>astor</li>
+                        <li class="hidden">meta</li>
+                        <li class="hidden">codegen</li>
+                    </ul>
+                </section>
+
+                <section class="demo" data-transition="fade">
+                    <header class="demo__header">Secondary Libraries:</header>
+                    <ul>
+                        <li>astor</li>
+                        <li>meta</li>
+                        <li class="hidden">codegen</li>
+                    </ul>
+                </section>
+
+                <section class="demo" data-transition="fade">
+                    <header class="demo__header">Secondary Libraries:</header>
+                    <ul>
+                        <li>astor</li>
+                        <li>meta</li>
+                        <li>codegen</li>
+                    </ul>
+                </section>
+
+                <section class="demo ast-demo" data-transition="fade">
+                    <img class="ast-demo__code" data-src="img/demo/1 - source.png" />
+                </section>
+
+                <section class="demo ast-demo" data-transition="fade">
+                    <img class="ast-demo__code" data-src="img/demo/2 - node.png" />
+                </section>
+
+                <section class="demo ast-demo" data-transition="fade">
+                    <img class="ast-demo__code" data-src="img/demo/2b - node.png" />
+                </section>
+
+                <section class="demo ast-demo" data-transition="fade">
+                    <img class="ast-demo__code" data-src="img/demo/2c - node dump.png" />
+                </section>
+
+                <section class="demo ast-demo" data-transition="fade">
+                    <img class="ast-demo__code" data-src="img/demo/3 - compile.png" />
+                </section>
+
+                <section class="demo ast-demo" data-transition="fade">
+                    <img class="ast-demo__code" data-src="img/demo/3b - type compiled.png" />
+                </section>
+
+                <section class="demo ast-demo" data-transition="fade">
+                    <img class="ast-demo__code" data-src="img/demo/4 - bytecode.png" />
+                </section>
+
+                <section class="demo ast-demo" data-transition="fade">
+                    <img class="ast-demo__code" data-src="img/demo/5 - eval.png" />
+                </section>
+
+                <section class="demo ast-demo" data-transition="fade">
+                    <img class="ast-demo__code" data-src="img/demo/6 - pretty bytecode.png" />
+                </section>
+
+                <section class="demo ast-demo" data-transition="fade">
+                    <img class="ast-demo__code" data-src="img/demo/7 - dis better.png" />
+                </section>
+
+                <section class="demo snippet" data-transition="fade">
+                    <img class="snippet__tree" data-src="img/trees/print.png">
+                    <img class="snippet__dis" data-src="img/dis/print.png">
+                    <code class="snippet__code">print("may the force be with you")</code>
+                </section>
+
+                <section class="demo snippet" data-transition="fade">
+                    <img class="snippet__tree" data-src="img/trees/if print.png">
+                    <img class="snippet__dis" data-src="img/dis/if print.png">
+                    <code class="snippet__code snippet__code--multi">
+                        if a == 23: <br />
+                            print("may the force be with you")
+                    </code>
+                </section>
+
+                <section class="demo snippet" data-transition="fade">
+                    <img class="snippet__tree" data-src="img/trees/set if print.png">
+                    <img class="snippet__dis" data-src="img/dis/set if print.png">
+                    <code class="snippet__code snippet__code--multi">
+                        a = 32 <br />
+                        if a == 23: <br />
+                            print("may the force be with you")
+                    </code>
+                </section>
+            <!-- 5 - CURRENT COMPILER OPTIMIZATIONS -->
+                <!--
+                    * Current optimizations built into the AST (and ones that could be) (3 minutes)
+                        - What does one gain from optimizing the AST?
+                        - How is the AST optimized?
+                        - Constant folding, dead code elimination, copy propagation. (Easy, quick descriptions of each)
+                 -->
+                <section class="optimizations" data-transition="fade">
+                    <h2>Current Optimizations</h2>
+                </section>
+
+                <section class="optimizations" data-transition="fade">
+                    <header class="optimizations__header">Current Optimizations</header>
+                    <ul>
+                        <li>Python's compiler is purposefully simple</li>
+                        <li class="hidden">Peephole Optimizer</li>
+                        <li class="hidden">Few AST optimizations besides constant folding</li>
+                    </ul>
+                    <aside class="notes">
+                        The best way to optimize Python is to replace the compiler and/or interpreter, like PyPy, Jython, Cython, Numpy, IronPython, Stackless Python, even MicroPython
+                    </aside>
+                </section>
+
+                <section class="optimizations" data-transition="fade">
+                    <header class="optimizations__header">Current Optimizations</header>
+                    <ul>
+                        <li>Python's compiler is purposefully simple</li>
+                        <li>Peephole Optimizer</li>
+                        <li class="hidden">Few AST optimizations besides constant folding</li>
+                    </ul>
+                    <aside class="notes">
+                        The best way to optimize Python is to replace the compiler and/or interpreter, like PyPy, Jython, Cython, Numpy, IronPython, Stackless Python, even MicroPython
+                    </aside>
+                </section>
+
+                <section class="optimizations" data-transition="fade">
+                    <header class="optimizations__header">Current Optimizations</header>
+                    <ul>
+                        <li>Python's compiler is purposefully simple</li>
+                        <li>Peephole Optimizer</li>
+                        <li>Few AST optimizations besides constant folding</li>
+                    </ul>
+                    <aside class="notes">
+                        The best way to optimize Python is to replace the compiler and/or interpreter, like PyPy, Jython, Cython, Numpy, IronPython, Stackless Python, even MicroPython
+                    </aside>
+                </section>
+
+                <section class="optimizations">
+                    <h2>Peephole Optimizations</h2>
+                </section>
+
+                <section class="optimizations">
+                    <header class="optimizations__header">Peephole Optimizations</header>
+                    <p>Looking around without moving your head.</p>
+                    <aside class="notes">
+                        Working on moving the peephole optimizer from standalone, post-AST parsing to within AST generation
+                    </aside>
+                </section>
+
+                <section class="optimizations">
+                    <header class="optimizations__header">Peephole Optimizations</header>
+                    <code>
+                        x = 1<br />
+                        y = x + 2
+                    </code>
+                    <aside class="notes">
+                        Working on moving the peephole optimizer from standalone, post-AST parsing to within AST generation
+                    </aside>
+                </section>
+
+                <section class="optimizations">
+                    <header class="optimizations__header">Peephole Optimizations</header>
+                    <code>y = 1 + 2</code>
+                    <aside class="notes">
+                        Working on moving the peephole optimizer from standalone, post-AST parsing to within AST generation
+                    </aside>
+                </section>
+
+                <section class="optimizations">
+                    <header class="optimizations__header">Peephole Optimizations</header>
+                    <img class="snippet__tree" data-src="img/dis/pre-peephole.png">
+                    <img class="snippet__dis" data-src="img/dis/post-peephole.png">
+                    <aside class="notes">
+                        Working on moving the peephole optimizer from standalone, post-AST parsing to within AST generation
+                    </aside>
+                </section>
+
+                <section class="optimizations">
+                    <h2>Constant Folding</h2>
+                </section>
+
+                <section class="optimizations">
+                    <header class="optimizations__header">Constant Folding</header>
+                    <p>Evaluating constant expressions at compile time.</p>
+                    <aside class="notes">
+                        Constant folding is the process of recognizing and evaluating constant expressions at compile time rather than computing them at runtime. Terms in constant expressions are typically simple literals, such as the integer literal 2, but they may also be variables whose values are known at compile time
+                    </aside>
+                </section>
+
+                <section class="demo snippet" data-transition="fade">
+                    <img class="snippet__tree" data-src="img/trees/pre-fold.png">
+                    <img class="snippet__dis" data-src="img/dis/pre-fold.png">
+                    <code class="snippet__code">a = 2 * 3</code>
+                </section>
+
+                <section class="demo snippet" data-transition="fade">
+                    <img class="snippet__tree" data-src="img/trees/post-fold.png">
+                    <img class="snippet__dis" data-src="img/dis/post-fold.png">
+                    <code class="snippet__code">a = 6</code>
+                </section>
+            <!-- 6 - AST AND DIS MODULES - PART 2 TODO -->
+            <!-- 7 - AST -> BYTECODE -> RUNTIME -->
+                <!--
+                    * How the AST affects your Code, and how your bytecode affects your runtime (5 minutes)
+                        - Spoiler alert: it creates those *.pyc and *.pyo files (neatly stored away in the __pycache__ directory in Python 3.2+! And those contain bytecode.
+                        - Mention the difference between *.pyc files and *pyo files.
+                 -->
+                <section class="bytecode">
+                    <h2>How The AST Affects Your Code</h2>
+                </section>
+
+                <section class="bytecode" data-transition="fade">
+                    <header class="bytecode__header">How The AST Affects Your Code</header>
+                    <ul>
+                        <li>Bytecode is created using an AST</li>
+                        <li class="hidden">Bytecode is stored in *.pyc or *.pyo files</li>
+                    </ul>
+                    <aside class="notes">
+                        <ul>
+                            <li>After 3.2, *.pyc and *.pyo files are neatly organized into __pycache__ directories</li>
+                            <li>*.pyc files are standard bytecode files. *pyo files are generated when the -O flag is specified. This simply removes assert statements.</li>
+                            <li>Python uses something called a magic number to determine if files have been changed since the last time bytecode was compiled.</li>
+                        </ul>
+                    </aside>
+                </section>
+
+                <section class="bytecode" data-transition="fade">
+                    <header class="bytecode__header">How The AST Affects Your Code</header>
+                    <ul>
+                        <li>Bytecode is created using an AST</li>
+                        <li>Bytecode is stored in *.pyc or *.pyo files</li>
+                    </ul>
+                    <aside class="notes">
+                        <ul>
+                            <li>After 3.2, *.pyc and *.pyo files are neatly organized into __pycache__ directories</li>
+                            <li>*.pyc files are standard bytecode files. *pyo files are generated when the -O flag is specified. This simply removes assert statements.</li>
+                            <li>Python uses something called a magic number to determine if files have been changed since the last time bytecode was compiled.</li>
+                        </ul>
+                    </aside>
+                </section>
+            <!-- 8 - PRACTICAL/OPTIMIZATION EXAMPLES -->
+                <!--
+                    * Motivating examples of ways to optimize your code to take advantage of AST and other compiler optimizations (5 minutes)
+                        - Ways to write code differently to generate the most optimized AST and, therefore, bytecode
+                        - Reasons to inspect the AST instead of bytecode (and why your bytecode still matters)
+                 -->
+                <section data-transition="fade">
+                    <h2>Practical Applications</h2>
+                </section>
+
+                <section data-transition="fade">
+                    <h2>Practical Applications:</h2>
+                    <ul>
+                        <li>Improve and speed up your code</li>
+                        <li class="hidden">Debug errors</li>
+                        <li class="hidden">Change the Python grammar</li>
+                        <li class="hidden">Round-Tripping</li>
+                        <li class="hidden">Code generators</li>
+                        <li class="hidden">Alternative interpreters</li>
+                        <ul>
+                            <li class="hidden">For Python</li>
+                            <li class="hidden">From Python</li>
+                        </ul>
+                        <li class="hidden"><a href="https://pybee.org/">PyBee</a></li>
+                    </ul>
+                    </ul>
+
+                    <aside class="notes">
+
+                    </aside>
+                </section>
+
+                <section data-transition="fade">
+                    <h2>Practical Applications:</h2>
+                    <ul>
+                        <li>Improve and speed up your code</li>
+                        <li>Debug errors</li>
+                        <li class="hidden">Change the Python grammar</li>
+                        <li class="hidden">Round-Tripping</li>
+                        <li class="hidden">Code generators</li>
+                        <li class="hidden">Alternative interpreters</li>
+                        <ul>
+                            <li class="hidden">For Python</li>
+                            <li class="hidden">From Python</li>
+                        </ul>
+                        <li class="hidden"><a href="https://pybee.org/">PyBee</a></li>
+                    </ul>
+                    <aside class="notes">
+                    </aside>
+                </section>
+
+                <section data-transition="fade">
+                    <h2>Practical Applications:</h2>
+                    <ul>
+                        <li>Improve and speed up your code</li>
+                        <li>Debug errors</li>
+                        <li>Change the Python grammar</li>
+                        <li class="hidden">Round-Tripping</li>
+                        <li class="hidden">Code generators</li>
+                        <li class="hidden">Alternative interpreters</li>
+                        <ul>
+                            <li class="hidden">For Python</li>
+                            <li class="hidden">From Python</li>
+                        </ul>
+                        <li class="hidden"><a href="https://pybee.org/">PyBee</a></li>
+                    </ul>
+                    <aside class="notes">
+                    </aside>
+                </section>
+
+                <section data-transition="fade">
+                    <h2>Practical Applications:</h2>
+                    <ul>
+                        <li>Improve and speed up your code</li>
+                        <li>Debug errors</li>
+                        <li>Change the Python grammar</li>
+                        <li>Round-Tripping</li>
+                        <li class="hidden">Code generators</li>
+                        <li class="hidden">Alternative interpreters</li>
+                        <ul>
+                            <li class="hidden">For Python</li>
+                            <li class="hidden">From Python</li>
+                        </ul>
+                        <li class="hidden"><a href="https://pybee.org/">PyBee</a></li>
+                    </ul>
+                    <aside class="notes">
+                    </aside>
+                </section>
+
+                <section data-transition="fade">
+                    <h2>Practical Applications:</h2>
+                    <ul>
+                        <li>Improve and speed up your code</li>
+                        <li>Debug errors</li>
+                        <li>Change the Python grammar</li>
+                        <li>Round-Tripping</li>
+                        <li>Code generators</li>
+                        <li class="hidden">Alternative interpreters</li>
+                        <ul>
+                            <li class="hidden">For Python</li>
+                            <li class="hidden">From Python</li>
+                        </ul>
+                        <li class="hidden"><a href="https://pybee.org/">PyBee</a></li>
+                    </ul>
+                    <aside class="notes">
+                    </aside>
+                </section>
+
+                <section data-transition="fade">
+                    <h2>Practical Applications:</h2>
+                    <ul>
+                        <li>Improve and speed up your code</li>
+                        <li>Debug errors</li>
+                        <li>Change the Python grammar</li>
+                        <li>Round-Tripping</li>
+                        <li>Code generators</li>
+                        <li>Alternative interpreters</li>
+                        <ul>
+                            <li class="hidden">For Python</li>
+                            <li class="hidden">From Python</li>
+                        </ul>
+                        <li class="hidden"><a href="https://pybee.org/">PyBee</a></li>
+                    </ul>
+                    <aside class="notes">
+                    </aside>
+                </section>
+
+                <section data-transition="fade">
+                    <h2>Practical Applications:</h2>
+                    <ul>
+                        <li>Improve and speed up your code</li>
+                        <li>Debug errors</li>
+                        <li>Change the Python grammar</li>
+                        <li>Round-Tripping</li>
+                        <li>Code generators</li>
+                        <li>Alternative interpreters</li>
+                        <ul>
+                            <li>For Python</li>
+                            <li>From Python</li>
+                        </ul>
+                        <li class="hidden"><a href="https://pybee.org/">PyBee</a></li>
+                    </ul>
+                    <aside class="notes">
+                    </aside>
+                </section>
+
+                <section data-transition="fade">
+                    <h2>Practical Applications:</h2>
+                    <ul>
+                        <li>Improve and speed up your code</li>
+                        <li>Debug errors</li>
+                        <li>Change the Python grammar</li>
+                        <li>Round-Tripping</li>
+                        <li>Code generators</li>
+                        <li>Alternative interpreters</li>
+                        <ul>
+                            <li>For Python</li>
+                            <li>From Python</li>
+                        </ul>
+                        <li><a href="https://pybee.org/">PyBee</a></li>
+                    </ul>
+                    <aside class="notes">
+                    </aside>
+                </section>
+            <!-- 8B -  APPLICATIONS OUTSIDE OF PYTHON -->
+                <section data-transition="fade">
+                    <h2>Applications Outside of Python</h2>
+                </section>
+
+                <section data-transition="fade">
+                    <h2>Applications Outside of Python:</h2>
+                    <ul>
+                        <li>Code analysis</li>
+                        <li class="hidden">Code linting</li>
+                        <li class="hidden">Tools such as <a href="https://www.smashingmagazine.com/2015/12/introduction-to-postcss/">Post-CSS</a> and <a href="https://github.com/babel/babylon/blob/master/ast/spec.md#node-objects">Babel</a></li>
+                    </ul>
+                    <aside class="notes">
+                    </aside>
+                </section>
+
+                <section data-transition="fade">
+                    <h2>Applications Outside of Python:</h2>
+                    <ul>
+                        <li>Code analysis</li>
+                        <li >Code linting</li>
+                        <li class="hidden">Tools such as <a href="https://www.smashingmagazine.com/2015/12/introduction-to-postcss/">Post-CSS</a> and <a href="https://github.com/babel/babylon/blob/master/ast/spec.md#node-objects">Babel</a></li>
+                    </ul>
+                    <aside class="notes">
+                    </aside>
+                </section>
+
+                <section data-transition="fade">
+                    <h2>Applications Outside of Python:</h2>
+                    <ul>
+                        <li>Code analysis</li>
+                        <li>Code linting</li>
+                        <li>Tools such as <a href="https://www.smashingmagazine.com/2015/12/introduction-to-postcss/">Post-CSS</a> and <a href="https://github.com/babel/babylon/blob/master/ast/spec.md#node-objects">Babel</a></li>
+                    </ul>
+                    <aside class="notes">
+                    </aside>
+                </section>
+            <!-- 9 - CONCLUSION / NEXT STEPS / RESOURCES -->
+                <!-- * Conclusion/Next steps/Resources (2 minutes) -->
+                <!-- TODO: resource links -->
+                <!-- <section>
+                    <h2>Resources</h2>
+
+                    <ul>
+                        <li><a href="">LINK</a></li>
+                    </ul>
+
+                    <aside class="notes">
+                        Use for info on interpreted vs compiled:
+                        * http://akaptur.com/blog/2013/12/03/introduction-to-the-python-interpreter-4/ - Allison Kaptur - Introduction to the Python Interpreter, Part 4: It's Dynamic!
+                        * https://www.python-course.eu/python3_execute_script.php
+
+                        Generic compilation process:
+                        * https://courses.cs.washington.edu/courses/cse401/16wi/lectures/05-implementing-coroutines-with-bytecode-interpreter-wi16.pdf
+
+                        Definition of AST:
+                        * https://en.wikipedia.org/wiki/Abstract_syntax_tree
+
+                        CPython's Compiler Documentation
+                        * https://devguide.python.org/compiler/
+
+                        Use for showing pre- and post- AST with constant folding:
+                        * http://www.cs.dartmouth.edu/~mckeeman/cs48/mxcom/doc/CodeOptimization.html
+
+                        AST Visualizer - GUI
+                        * https://github.com/ivan111/vpyast
+                        * https://vpyast.appspot.com/
+
+                        AST view - HTML
+                        * http://pythonhosted.org/pyRegurgitator/
+
+                        Breaking compilation down
+                        * https://eli.thegreenplace.net/2009/11/28/python-internals-working-with-python-asts
+                        AST vs CST:
+                        * https://eli.thegreenplace.net/2009/02/16/abstract-vs-concrete-syntax-trees/
+
+                        DIS example to show bytecode changes:
+                        * https://gist.github.com/ramalho/7ceaf014d125749f0b0c
+
+                        Why knowing about your bytecode (and therefore AST) can help find speedups):
+                        * http://multigrad.blogspot.com/2014/06/fun-with-python-bytecode.html
+
+                        Improving your code:
+                        * http://hackflow.com/blog/2015/03/29/metaprogramming-beyond-decency/
+
+                        Use for showing weird peephole optimization:
+                        * https://github.com/akaptur/peephole-optimization - Allison Kaptur - Peephole Optimizer Github Project
+                        * http://akaptur.com/blog/2014/08/02/the-cpython-peephole-optimizer-and-you/ - Allison Kaptur - The CPython Peephole Optimizer and You
+
+                        Round-Trip Engineering:
+                        * http://www.lysator.liu.se/xenofarm/argouml/work/argouml/www/documentation/defaulthtml/manual/ch06.html
+                    </aside>
+                </section> -->
+
+                <section class="end">
+                    <h4>The end!</h4>
+                    <img class="end__gif" data-src="img/gifs/thank you james corden.gif" />
+                    <ul>
+                        <li>Talk is hosted at:
+                            <ul><li>
+                                <a href="emilyemorehouse.github.io/ast-and-me">emilyemorehouse.github.io/ast-and-me</a>
+                            </li></ul>
+                        </li>
+                        <li>Talk source code and experimentation scripts are at:
+                            <ul><li>
+                                <a href="github.com/emilyemorehouse/ast-and-me">github.com/emilyemorehouse/ast-and-me</a>
+                            </li></ul>
+                        </li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Questions?</h2>
+                </section>
+            </div>
+
+            <footer>
+                The AST and Me // @emilyemorehouse
+            </footer>
+        </div>
+
+        <script src="lib/js/head.min.js"></script>
+        <script src="js/reveal.js"></script>
+
+        <script>
+            // More info about config & dependencies:
+            // - https://github.com/hakimel/reveal.js#configuration
+            // - https://github.com/hakimel/reveal.js#dependencies
+            Reveal.initialize({
+                // history: true, // Turn this on in development
+                dependencies: [
+                    { src: 'plugin/markdown/marked.js' },
+                    { src: 'plugin/markdown/markdown.js' },
+                    { src: 'plugin/notes/notes.js', async: true },
+                    { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+                ]
+            });
+        </script>
+    </body>
 </html>

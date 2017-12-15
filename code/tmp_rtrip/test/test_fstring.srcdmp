@@ -1,0 +1,2990 @@
+Module(
+    body=[Import(names=[alias(name='ast', asname=None)]),
+        Import(names=[alias(name='types', asname=None)]),
+        Import(names=[alias(name='decimal', asname=None)]),
+        Import(names=[alias(name='unittest', asname=None)]),
+        Assign(targets=[Name(id='a_global')], value=Str(s='global variable')),
+        ClassDef(name='TestCase',
+            bases=[Attribute(value=Name(id='unittest'), attr='TestCase')],
+            keywords=[],
+            body=[
+                FunctionDef(name='assertAllRaise',
+                    args=arguments(
+                        args=[arg(arg='self', annotation=None),
+                            arg(arg='exception_type', annotation=None),
+                            arg(arg='regex', annotation=None),
+                            arg(arg='error_strings', annotation=None)],
+                        vararg=None,
+                        kwonlyargs=[],
+                        kw_defaults=[],
+                        kwarg=None,
+                        defaults=[]),
+                    body=[
+                        For(target=Name(id='str'),
+                            iter=Name(id='error_strings'),
+                            body=[
+                                With(
+                                    items=[
+                                        withitem(
+                                            context_expr=Call(func=Attribute(value=Name(id='self'), attr='subTest'),
+                                                args=[],
+                                                keywords=[keyword(arg='str', value=Name(id='str'))]),
+                                            optional_vars=None)],
+                                    body=[
+                                        With(
+                                            items=[
+                                                withitem(
+                                                    context_expr=Call(
+                                                        func=Attribute(value=Name(id='self'), attr='assertRaisesRegex'),
+                                                        args=[Name(id='exception_type'), Name(id='regex')],
+                                                        keywords=[]),
+                                                    optional_vars=None)],
+                                            body=[
+                                                Expr(
+                                                    value=Call(func=Name(id='eval'),
+                                                        args=[Name(id='str')],
+                                                        keywords=[]))])])],
+                            orelse=[])],
+                    decorator_list=[],
+                    returns=None),
+                FunctionDef(name='test__format__lookup',
+                    args=arguments(args=[arg(arg='self', annotation=None)],
+                        vararg=None,
+                        kwonlyargs=[],
+                        kw_defaults=[],
+                        kwarg=None,
+                        defaults=[]),
+                    body=[
+                        ClassDef(name='X',
+                            bases=[],
+                            keywords=[],
+                            body=[
+                                FunctionDef(name='__format__',
+                                    args=arguments(
+                                        args=[arg(arg='self', annotation=None), arg(arg='spec', annotation=None)],
+                                        vararg=None,
+                                        kwonlyargs=[],
+                                        kw_defaults=[],
+                                        kwarg=None,
+                                        defaults=[]),
+                                    body=[Return(value=Str(s='class'))],
+                                    decorator_list=[],
+                                    returns=None)],
+                            decorator_list=[]),
+                        Assign(targets=[Name(id='x')], value=Call(func=Name(id='X'), args=[], keywords=[])),
+                        Assign(targets=[Name(id='y')], value=Call(func=Name(id='X'), args=[], keywords=[])),
+                        Assign(targets=[Attribute(value=Name(id='y'), attr='__format__')],
+                            value=Call(func=Attribute(value=Name(id='types'), attr='MethodType'),
+                                args=[
+                                    Lambda(
+                                        args=arguments(
+                                            args=[arg(arg='self', annotation=None), arg(arg='spec', annotation=None)],
+                                            vararg=None,
+                                            kwonlyargs=[],
+                                            kw_defaults=[],
+                                            kwarg=None,
+                                            defaults=[]),
+                                        body=Str(s='instance')),
+                                    Name(id='y')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[FormattedValue(value=Name(id='y'), conversion=-1, format_spec=None)]),
+                                    Call(func=Name(id='format'), args=[Name(id='y')], keywords=[])],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[FormattedValue(value=Name(id='y'), conversion=-1, format_spec=None)]),
+                                    Str(s='class')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[Call(func=Name(id='format'), args=[Name(id='x')], keywords=[]),
+                                    Call(func=Name(id='format'), args=[Name(id='y')], keywords=[])],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    Call(func=Attribute(value=Name(id='x'), attr='__format__'),
+                                        args=[Str(s='')],
+                                        keywords=[]),
+                                    Str(s='class')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    Call(func=Attribute(value=Name(id='y'), attr='__format__'),
+                                        args=[Str(s='')],
+                                        keywords=[]),
+                                    Str(s='instance')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    Call(
+                                        func=Attribute(
+                                            value=Call(func=Name(id='type'), args=[Name(id='x')], keywords=[]),
+                                            attr='__format__'),
+                                        args=[Name(id='x'), Str(s='')],
+                                        keywords=[]),
+                                    Str(s='class')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    Call(
+                                        func=Attribute(
+                                            value=Call(func=Name(id='type'), args=[Name(id='y')], keywords=[]),
+                                            attr='__format__'),
+                                        args=[Name(id='y'), Str(s='')],
+                                        keywords=[]),
+                                    Str(s='class')],
+                                keywords=[]))],
+                    decorator_list=[],
+                    returns=None),
+                FunctionDef(name='test_ast',
+                    args=arguments(args=[arg(arg='self', annotation=None)],
+                        vararg=None,
+                        kwonlyargs=[],
+                        kw_defaults=[],
+                        kwarg=None,
+                        defaults=[]),
+                    body=[
+                        ClassDef(name='X',
+                            bases=[],
+                            keywords=[],
+                            body=[
+                                FunctionDef(name='__init__',
+                                    args=arguments(args=[arg(arg='self', annotation=None)],
+                                        vararg=None,
+                                        kwonlyargs=[],
+                                        kw_defaults=[],
+                                        kwarg=None,
+                                        defaults=[]),
+                                    body=[
+                                        Assign(targets=[Attribute(value=Name(id='self'), attr='called')],
+                                            value=NameConstant(value=False))],
+                                    decorator_list=[],
+                                    returns=None),
+                                FunctionDef(name='__call__',
+                                    args=arguments(args=[arg(arg='self', annotation=None)],
+                                        vararg=None,
+                                        kwonlyargs=[],
+                                        kw_defaults=[],
+                                        kwarg=None,
+                                        defaults=[]),
+                                    body=[
+                                        Assign(targets=[Attribute(value=Name(id='self'), attr='called')],
+                                            value=NameConstant(value=True)),
+                                        Return(value=Num(n=4))],
+                                    decorator_list=[],
+                                    returns=None)],
+                            decorator_list=[]),
+                        Assign(targets=[Name(id='x')], value=Call(func=Name(id='X'), args=[], keywords=[])),
+                        Assign(targets=[Name(id='expr')], value=Str(s="\na = 10\nf'{a * x()}'")),
+                        Assign(targets=[Name(id='t')],
+                            value=Call(func=Attribute(value=Name(id='ast'), attr='parse'),
+                                args=[Name(id='expr')],
+                                keywords=[])),
+                        Assign(targets=[Name(id='c')],
+                            value=Call(func=Name(id='compile'),
+                                args=[Name(id='t'), Str(s=''), Str(s='exec')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertFalse'),
+                                args=[Attribute(value=Name(id='x'), attr='called')],
+                                keywords=[])),
+                        Expr(value=Call(func=Name(id='exec'), args=[Name(id='c')], keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertTrue'),
+                                args=[Attribute(value=Name(id='x'), attr='called')],
+                                keywords=[]))],
+                    decorator_list=[],
+                    returns=None),
+                FunctionDef(name='test_docstring',
+                    args=arguments(args=[arg(arg='self', annotation=None)],
+                        vararg=None,
+                        kwonlyargs=[],
+                        kw_defaults=[],
+                        kwarg=None,
+                        defaults=[]),
+                    body=[
+                        FunctionDef(name='f',
+                            args=arguments(args=[],
+                                vararg=None,
+                                kwonlyargs=[],
+                                kw_defaults=[],
+                                kwarg=None,
+                                defaults=[]),
+                            body=[Expr(value=JoinedStr(values=[Str(s='Not a docstring')]))],
+                            decorator_list=[],
+                            returns=None),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertIsNone'),
+                                args=[Attribute(value=Name(id='f'), attr='__doc__')],
+                                keywords=[])),
+                        FunctionDef(name='g',
+                            args=arguments(args=[],
+                                vararg=None,
+                                kwonlyargs=[],
+                                kw_defaults=[],
+                                kwarg=None,
+                                defaults=[]),
+                            body=[Expr(value=JoinedStr(values=[Str(s='Not a docstring')]))],
+                            decorator_list=[],
+                            returns=None),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertIsNone'),
+                                args=[Attribute(value=Name(id='g'), attr='__doc__')],
+                                keywords=[]))],
+                    decorator_list=[],
+                    returns=None),
+                FunctionDef(name='test_literal_eval',
+                    args=arguments(args=[arg(arg='self', annotation=None)],
+                        vararg=None,
+                        kwonlyargs=[],
+                        kw_defaults=[],
+                        kwarg=None,
+                        defaults=[]),
+                    body=[
+                        With(
+                            items=[
+                                withitem(
+                                    context_expr=Call(
+                                        func=Attribute(value=Name(id='self'), attr='assertRaisesRegex'),
+                                        args=[Name(id='ValueError'), Str(s='malformed node or string')],
+                                        keywords=[]),
+                                    optional_vars=None)],
+                            body=[
+                                Expr(
+                                    value=Call(func=Attribute(value=Name(id='ast'), attr='literal_eval'),
+                                        args=[Str(s="f'x'")],
+                                        keywords=[]))])],
+                    decorator_list=[],
+                    returns=None),
+                FunctionDef(name='test_ast_compile_time_concat',
+                    args=arguments(args=[arg(arg='self', annotation=None)],
+                        vararg=None,
+                        kwonlyargs=[],
+                        kw_defaults=[],
+                        kwarg=None,
+                        defaults=[]),
+                    body=[Assign(targets=[Name(id='x')], value=List(elts=[Str(s='')])),
+                        Assign(targets=[Name(id='expr')], value=Str(s="x[0] = 'foo' f'{3}'")),
+                        Assign(targets=[Name(id='t')],
+                            value=Call(func=Attribute(value=Name(id='ast'), attr='parse'),
+                                args=[Name(id='expr')],
+                                keywords=[])),
+                        Assign(targets=[Name(id='c')],
+                            value=Call(func=Name(id='compile'),
+                                args=[Name(id='t'), Str(s=''), Str(s='exec')],
+                                keywords=[])),
+                        Expr(value=Call(func=Name(id='exec'), args=[Name(id='c')], keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[Subscript(value=Name(id='x'), slice=Index(value=Num(n=0))), Str(s='foo3')],
+                                keywords=[]))],
+                    decorator_list=[],
+                    returns=None),
+                FunctionDef(name='test_compile_time_concat_errors',
+                    args=arguments(args=[arg(arg='self', annotation=None)],
+                        vararg=None,
+                        kwonlyargs=[],
+                        kw_defaults=[],
+                        kwarg=None,
+                        defaults=[]),
+                    body=[
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertAllRaise'),
+                                args=[Name(id='SyntaxError'),
+                                    Str(s='cannot mix bytes and nonbytes literals'),
+                                    List(elts=[Str(s="f'' b''"), Str(s="b'' f''")])],
+                                keywords=[]))],
+                    decorator_list=[],
+                    returns=None),
+                FunctionDef(name='test_literal',
+                    args=arguments(args=[arg(arg='self', annotation=None)],
+                        vararg=None,
+                        kwonlyargs=[],
+                        kw_defaults=[],
+                        kwarg=None,
+                        defaults=[]),
+                    body=[
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[JoinedStr(values=[]), Str(s='')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[JoinedStr(values=[Str(s='a')]), Str(s='a')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[JoinedStr(values=[Str(s=' ')]), Str(s=' ')],
+                                keywords=[]))],
+                    decorator_list=[],
+                    returns=None),
+                FunctionDef(name='test_unterminated_string',
+                    args=arguments(args=[arg(arg='self', annotation=None)],
+                        vararg=None,
+                        kwonlyargs=[],
+                        kw_defaults=[],
+                        kwarg=None,
+                        defaults=[]),
+                    body=[
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertAllRaise'),
+                                args=[Name(id='SyntaxError'),
+                                    Str(s='f-string: unterminated string'),
+                                    List(
+                                        elts=[Str(s='f\'{"x\''),
+                                            Str(s='f\'{"x}\''),
+                                            Str(s='f\'{("x\''),
+                                            Str(s='f\'{("x}\'')])],
+                                keywords=[]))],
+                    decorator_list=[],
+                    returns=None),
+                FunctionDef(name='test_mismatched_parens',
+                    args=arguments(args=[arg(arg='self', annotation=None)],
+                        vararg=None,
+                        kwonlyargs=[],
+                        kw_defaults=[],
+                        kwarg=None,
+                        defaults=[]),
+                    body=[
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertAllRaise'),
+                                args=[Name(id='SyntaxError'),
+                                    Str(s='f-string: mismatched'),
+                                    List(elts=[Str(s="f'{((}'")])],
+                                keywords=[]))],
+                    decorator_list=[],
+                    returns=None),
+                FunctionDef(name='test_double_braces',
+                    args=arguments(args=[arg(arg='self', annotation=None)],
+                        vararg=None,
+                        kwonlyargs=[],
+                        kw_defaults=[],
+                        kwarg=None,
+                        defaults=[]),
+                    body=[
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[JoinedStr(values=[Str(s='{')]), Str(s='{')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[JoinedStr(values=[Str(s='a{')]), Str(s='a{')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[JoinedStr(values=[Str(s='{b')]), Str(s='{b')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[JoinedStr(values=[Str(s='a{b')]), Str(s='a{b')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[JoinedStr(values=[Str(s='}')]), Str(s='}')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[JoinedStr(values=[Str(s='a}')]), Str(s='a}')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[JoinedStr(values=[Str(s='}b')]), Str(s='}b')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[JoinedStr(values=[Str(s='a}b')]), Str(s='a}b')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[JoinedStr(values=[Str(s='{}')]), Str(s='{}')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[JoinedStr(values=[Str(s='a{}')]), Str(s='a{}')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[JoinedStr(values=[Str(s='{b}')]), Str(s='{b}')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[JoinedStr(values=[Str(s='{}c')]), Str(s='{}c')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[JoinedStr(values=[Str(s='a{b}')]), Str(s='a{b}')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[JoinedStr(values=[Str(s='a{}c')]), Str(s='a{}c')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[JoinedStr(values=[Str(s='{b}c')]), Str(s='{b}c')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[JoinedStr(values=[Str(s='a{b}c')]), Str(s='a{b}c')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[Str(s='{'),
+                                            FormattedValue(value=Num(n=10), conversion=-1, format_spec=None)]),
+                                    Str(s='{10')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[Str(s='}'),
+                                            FormattedValue(value=Num(n=10), conversion=-1, format_spec=None)]),
+                                    Str(s='}10')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[Str(s='}{'),
+                                            FormattedValue(value=Num(n=10), conversion=-1, format_spec=None)]),
+                                    Str(s='}{10')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[Str(s='}a{'),
+                                            FormattedValue(value=Num(n=10), conversion=-1, format_spec=None)]),
+                                    Str(s='}a{10')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[FormattedValue(value=Num(n=10), conversion=-1, format_spec=None),
+                                            Str(s='{')]),
+                                    Str(s='10{')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[FormattedValue(value=Num(n=10), conversion=-1, format_spec=None),
+                                            Str(s='}')]),
+                                    Str(s='10}')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[FormattedValue(value=Num(n=10), conversion=-1, format_spec=None),
+                                            Str(s='}{')]),
+                                    Str(s='10}{')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[FormattedValue(value=Num(n=10), conversion=-1, format_spec=None),
+                                            Str(s='}a{}')]),
+                                    Str(s='10}a{}')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[FormattedValue(value=Str(s='{{}}'), conversion=-1, format_spec=None)]),
+                                    Str(s='{{}}')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertAllRaise'),
+                                args=[Name(id='TypeError'),
+                                    Str(s='unhashable type'),
+                                    List(elts=[Str(s="f'{ {{}} }'")])],
+                                keywords=[]))],
+                    decorator_list=[],
+                    returns=None),
+                FunctionDef(name='test_compile_time_concat',
+                    args=arguments(args=[arg(arg='self', annotation=None)],
+                        vararg=None,
+                        kwonlyargs=[],
+                        kw_defaults=[],
+                        kwarg=None,
+                        defaults=[]),
+                    body=[Assign(targets=[Name(id='x')], value=Str(s='def')),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[Str(s='abc## '),
+                                            FormattedValue(value=Name(id='x'), conversion=-1, format_spec=None),
+                                            Str(s='ghi')]),
+                                    Str(s='abc## defghi')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[Str(s='abc'),
+                                            FormattedValue(value=Name(id='x'), conversion=-1, format_spec=None),
+                                            Str(s='ghi')]),
+                                    Str(s='abcdefghi')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[Str(s='abc'),
+                                            FormattedValue(value=Name(id='x'), conversion=-1, format_spec=None),
+                                            Str(s='ghi'),
+                                            FormattedValue(value=Name(id='x'),
+                                                conversion=-1,
+                                                format_spec=JoinedStr(values=[Str(s='4')]))]),
+                                    Str(s='abcdefghidef ')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[Str(s='{x}'),
+                                            FormattedValue(value=Name(id='x'), conversion=-1, format_spec=None)]),
+                                    Str(s='{x}def')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[Str(s='{x'),
+                                            FormattedValue(value=Name(id='x'), conversion=-1, format_spec=None)]),
+                                    Str(s='{xdef')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[Str(s='{x}'),
+                                            FormattedValue(value=Name(id='x'), conversion=-1, format_spec=None)]),
+                                    Str(s='{x}def')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[Str(s='{{x}}'),
+                                            FormattedValue(value=Name(id='x'), conversion=-1, format_spec=None)]),
+                                    Str(s='{{x}}def')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[Str(s='{{x'),
+                                            FormattedValue(value=Name(id='x'), conversion=-1, format_spec=None)]),
+                                    Str(s='{{xdef')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[Str(s='x}}'),
+                                            FormattedValue(value=Name(id='x'), conversion=-1, format_spec=None)]),
+                                    Str(s='x}}def')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[FormattedValue(value=Name(id='x'), conversion=-1, format_spec=None),
+                                            Str(s='x}}')]),
+                                    Str(s='defx}}')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[FormattedValue(value=Name(id='x'), conversion=-1, format_spec=None)]),
+                                    Str(s='def')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[FormattedValue(value=Name(id='x'), conversion=-1, format_spec=None)]),
+                                    Str(s='def')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[FormattedValue(value=Name(id='x'), conversion=-1, format_spec=None)]),
+                                    Str(s='def')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[FormattedValue(value=Name(id='x'), conversion=-1, format_spec=None),
+                                            Str(s='2')]),
+                                    Str(s='def2')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[Str(s='1'),
+                                            FormattedValue(value=Name(id='x'), conversion=-1, format_spec=None),
+                                            Str(s='2')]),
+                                    Str(s='1def2')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[Str(s='1'),
+                                            FormattedValue(value=Name(id='x'), conversion=-1, format_spec=None)]),
+                                    Str(s='1def')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[FormattedValue(value=Name(id='x'), conversion=-1, format_spec=None),
+                                            Str(s='-'),
+                                            FormattedValue(value=Name(id='x'), conversion=-1, format_spec=None)]),
+                                    Str(s='def-def')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[JoinedStr(values=[]), Str(s='')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[JoinedStr(values=[]), Str(s='')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[JoinedStr(values=[]), Str(s='')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[JoinedStr(values=[]), Str(s='')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[JoinedStr(values=[]), Str(s='')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[JoinedStr(values=[]), Str(s='')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[JoinedStr(values=[]), Str(s='')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertAllRaise'),
+                                args=[Name(id='SyntaxError'),
+                                    Str(s="f-string: expecting '}'"),
+                                    List(elts=[Str(s="f'{3' f'}'")])],
+                                keywords=[]))],
+                    decorator_list=[],
+                    returns=None),
+                FunctionDef(name='test_comments',
+                    args=arguments(args=[arg(arg='self', annotation=None)],
+                        vararg=None,
+                        kwonlyargs=[],
+                        kw_defaults=[],
+                        kwarg=None,
+                        defaults=[]),
+                    body=[
+                        Assign(targets=[Name(id='d')], value=Dict(keys=[Str(s='#')], values=[Str(s='hash')])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[FormattedValue(value=Str(s='#'), conversion=-1, format_spec=None)]),
+                                    Str(s='#')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[
+                                            FormattedValue(
+                                                value=Subscript(value=Name(id='d'), slice=Index(value=Str(s='#'))),
+                                                conversion=-1,
+                                                format_spec=None)]),
+                                    Str(s='hash')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertAllRaise'),
+                                args=[Name(id='SyntaxError'),
+                                    Str(s="f-string expression part cannot include '#'"),
+                                    List(
+                                        elts=[Str(s="f'{1#}'"), Str(s="f'{3(#)}'"), Str(s="f'{#}'"), Str(s="f'{)#}'")])],
+                                keywords=[]))],
+                    decorator_list=[],
+                    returns=None),
+                FunctionDef(name='test_many_expressions',
+                    args=arguments(args=[arg(arg='self', annotation=None)],
+                        vararg=None,
+                        kwonlyargs=[],
+                        kw_defaults=[],
+                        kwarg=None,
+                        defaults=[]),
+                    body=[
+                        FunctionDef(name='build_fstr',
+                            args=arguments(
+                                args=[arg(arg='n', annotation=None), arg(arg='extra', annotation=None)],
+                                vararg=None,
+                                kwonlyargs=[],
+                                kw_defaults=[],
+                                kwarg=None,
+                                defaults=[Str(s='')]),
+                            body=[
+                                Return(
+                                    value=BinOp(
+                                        left=BinOp(
+                                            left=BinOp(left=Str(s="f'"),
+                                                op=Add,
+                                                right=BinOp(left=Str(s='{x} '), op=Mult, right=Name(id='n'))),
+                                            op=Add,
+                                            right=Name(id='extra')),
+                                        op=Add,
+                                        right=Str(s="'")))],
+                            decorator_list=[],
+                            returns=None),
+                        Assign(targets=[Name(id='x')], value=Str(s='X')),
+                        Assign(targets=[Name(id='width')], value=Num(n=1)),
+                        For(target=Name(id='i'),
+                            iter=Call(func=Name(id='range'), args=[Num(n=250), Num(n=260)], keywords=[]),
+                            body=[
+                                Expr(
+                                    value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                        args=[
+                                            Call(func=Name(id='eval'),
+                                                args=[Call(func=Name(id='build_fstr'), args=[Name(id='i')], keywords=[]),
+                                                    ],
+                                                keywords=[]),
+                                            BinOp(left=BinOp(left=Name(id='x'), op=Add, right=Str(s=' ')),
+                                                op=Mult,
+                                                right=Name(id='i'))],
+                                        keywords=[]))],
+                            orelse=[]),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    Call(func=Name(id='eval'),
+                                        args=[
+                                            BinOp(left=Call(func=Name(id='build_fstr'), args=[Num(n=255)], keywords=[]),
+                                                op=Mult,
+                                                right=Num(n=256))],
+                                        keywords=[]),
+                                    BinOp(left=BinOp(left=Name(id='x'), op=Add, right=Str(s=' ')),
+                                        op=Mult,
+                                        right=BinOp(left=Num(n=255), op=Mult, right=Num(n=256)))],
+                                keywords=[])),
+                        Assign(targets=[Name(id='s')],
+                            value=Call(func=Name(id='build_fstr'),
+                                args=[Num(n=253), Str(s='{x:{width}} ')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[Call(func=Name(id='eval'), args=[Name(id='s')], keywords=[]),
+                                    BinOp(left=BinOp(left=Name(id='x'), op=Add, right=Str(s=' ')),
+                                        op=Mult,
+                                        right=Num(n=254))],
+                                keywords=[])),
+                        Assign(targets=[Name(id='s')],
+                            value=BinOp(left=Str(s="f'{1}' 'x' 'y'"), op=Mult, right=Num(n=1024))),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[Call(func=Name(id='eval'), args=[Name(id='s')], keywords=[]),
+                                    BinOp(left=Str(s='1xy'), op=Mult, right=Num(n=1024))],
+                                keywords=[]))],
+                    decorator_list=[],
+                    returns=None),
+                FunctionDef(name='test_format_specifier_expressions',
+                    args=arguments(args=[arg(arg='self', annotation=None)],
+                        vararg=None,
+                        kwonlyargs=[],
+                        kw_defaults=[],
+                        kwarg=None,
+                        defaults=[]),
+                    body=[Assign(targets=[Name(id='width')], value=Num(n=10)),
+                        Assign(targets=[Name(id='precision')], value=Num(n=4)),
+                        Assign(targets=[Name(id='value')],
+                            value=Call(func=Attribute(value=Name(id='decimal'), attr='Decimal'),
+                                args=[Str(s='12.34567')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[Str(s='result: '),
+                                            FormattedValue(value=Name(id='value'),
+                                                conversion=-1,
+                                                format_spec=JoinedStr(
+                                                    values=[
+                                                        FormattedValue(value=Name(id='width'),
+                                                            conversion=-1,
+                                                            format_spec=None),
+                                                        Str(s='.'),
+                                                        FormattedValue(value=Name(id='precision'),
+                                                            conversion=-1,
+                                                            format_spec=None)]))]),
+                                    Str(s='result:      12.35')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[Str(s='result: '),
+                                            FormattedValue(value=Name(id='value'),
+                                                conversion=-1,
+                                                format_spec=JoinedStr(
+                                                    values=[
+                                                        FormattedValue(value=Name(id='width'),
+                                                            conversion=114,
+                                                            format_spec=None),
+                                                        Str(s='.'),
+                                                        FormattedValue(value=Name(id='precision'),
+                                                            conversion=-1,
+                                                            format_spec=None)]))]),
+                                    Str(s='result:      12.35')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[Str(s='result: '),
+                                            FormattedValue(value=Name(id='value'),
+                                                conversion=-1,
+                                                format_spec=JoinedStr(
+                                                    values=[
+                                                        FormattedValue(value=Name(id='width'),
+                                                            conversion=-1,
+                                                            format_spec=JoinedStr(values=[Str(s='0')])),
+                                                        Str(s='.'),
+                                                        FormattedValue(value=Name(id='precision'),
+                                                            conversion=-1,
+                                                            format_spec=JoinedStr(values=[Str(s='1')]))]))]),
+                                    Str(s='result:      12.35')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[Str(s='result: '),
+                                            FormattedValue(value=Name(id='value'),
+                                                conversion=-1,
+                                                format_spec=JoinedStr(
+                                                    values=[FormattedValue(value=Num(n=1), conversion=-1, format_spec=None),
+                                                        FormattedValue(value=Num(n=0),
+                                                            conversion=-1,
+                                                            format_spec=JoinedStr(values=[Str(s='0')])),
+                                                        Str(s='.'),
+                                                        FormattedValue(value=Name(id='precision'),
+                                                            conversion=-1,
+                                                            format_spec=JoinedStr(values=[Str(s='1')]))]))]),
+                                    Str(s='result:      12.35')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[Str(s='result: '),
+                                            FormattedValue(value=Name(id='value'),
+                                                conversion=-1,
+                                                format_spec=JoinedStr(
+                                                    values=[FormattedValue(value=Num(n=1), conversion=-1, format_spec=None),
+                                                        FormattedValue(value=Num(n=0),
+                                                            conversion=-1,
+                                                            format_spec=JoinedStr(values=[Str(s='0')])),
+                                                        Str(s='.'),
+                                                        FormattedValue(value=Name(id='precision'),
+                                                            conversion=-1,
+                                                            format_spec=JoinedStr(values=[Str(s='1')]))]))]),
+                                    Str(s='result:      12.35')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[
+                                            FormattedValue(value=Num(n=10),
+                                                conversion=-1,
+                                                format_spec=JoinedStr(
+                                                    values=[Str(s='#'),
+                                                        FormattedValue(value=Num(n=1), conversion=-1, format_spec=None),
+                                                        Str(s='0x')]))]),
+                                    Str(s='       0xa')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[
+                                            FormattedValue(value=Num(n=10),
+                                                conversion=-1,
+                                                format_spec=JoinedStr(
+                                                    values=[
+                                                        FormattedValue(value=Str(s='#'),
+                                                            conversion=-1,
+                                                            format_spec=None),
+                                                        Str(s='1'),
+                                                        FormattedValue(value=Num(n=0), conversion=-1, format_spec=None),
+                                                        FormattedValue(value=Str(s='x'),
+                                                            conversion=-1,
+                                                            format_spec=None)]))]),
+                                    Str(s='       0xa')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[
+                                            FormattedValue(value=UnaryOp(op=USub, operand=Num(n=10)),
+                                                conversion=-1,
+                                                format_spec=JoinedStr(
+                                                    values=[Str(s='-'),
+                                                        FormattedValue(value=Str(s='#'),
+                                                            conversion=-1,
+                                                            format_spec=None),
+                                                        Str(s='1'),
+                                                        FormattedValue(value=Num(n=0), conversion=-1, format_spec=None),
+                                                        Str(s='x')]))]),
+                                    Str(s='      -0xa')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[
+                                            FormattedValue(value=UnaryOp(op=USub, operand=Num(n=10)),
+                                                conversion=-1,
+                                                format_spec=JoinedStr(
+                                                    values=[
+                                                        FormattedValue(value=Str(s='-'),
+                                                            conversion=-1,
+                                                            format_spec=None),
+                                                        Str(s='#'),
+                                                        FormattedValue(value=Num(n=1), conversion=-1, format_spec=None),
+                                                        Str(s='0'),
+                                                        FormattedValue(value=Str(s='x'),
+                                                            conversion=-1,
+                                                            format_spec=None)]))]),
+                                    Str(s='      -0xa')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[
+                                            FormattedValue(value=Num(n=10),
+                                                conversion=-1,
+                                                format_spec=JoinedStr(
+                                                    values=[Str(s='#'),
+                                                        FormattedValue(
+                                                            value=BoolOp(op=And,
+                                                                values=[
+                                                                    Compare(left=Num(n=3),
+                                                                        ops=[NotEq],
+                                                                        comparators=[Dict(keys=[Num(n=4)], values=[Num(n=5)]),
+                                                                            ]),
+                                                                    Name(id='width')]),
+                                                            conversion=-1,
+                                                            format_spec=None),
+                                                        Str(s='x')]))]),
+                                    Str(s='       0xa')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertAllRaise'),
+                                args=[Name(id='SyntaxError'),
+                                    Str(s="f-string: expecting '}'"),
+                                    List(elts=[Str(s='f\'{"s"!r{":10"}}\'')])],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertAllRaise'),
+                                args=[Name(id='SyntaxError'),
+                                    Str(s='invalid syntax'),
+                                    List(elts=[Str(s="f'{4:{/5}}'")])],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertAllRaise'),
+                                args=[Name(id='SyntaxError'),
+                                    Str(s='f-string: expressions nested too deeply'),
+                                    List(elts=[Str(s="f'result: {value:{width:{0}}.{precision:1}}'")])],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertAllRaise'),
+                                args=[Name(id='SyntaxError'),
+                                    Str(s='f-string: invalid conversion character'),
+                                    List(elts=[Str(s='f\'{"s"!{"r"}}\'')])],
+                                keywords=[]))],
+                    decorator_list=[],
+                    returns=None),
+                FunctionDef(name='test_side_effect_order',
+                    args=arguments(args=[arg(arg='self', annotation=None)],
+                        vararg=None,
+                        kwonlyargs=[],
+                        kw_defaults=[],
+                        kwarg=None,
+                        defaults=[]),
+                    body=[
+                        ClassDef(name='X',
+                            bases=[],
+                            keywords=[],
+                            body=[
+                                FunctionDef(name='__init__',
+                                    args=arguments(args=[arg(arg='self', annotation=None)],
+                                        vararg=None,
+                                        kwonlyargs=[],
+                                        kw_defaults=[],
+                                        kwarg=None,
+                                        defaults=[]),
+                                    body=[Assign(targets=[Attribute(value=Name(id='self'), attr='i')], value=Num(n=0))],
+                                    decorator_list=[],
+                                    returns=None),
+                                FunctionDef(name='__format__',
+                                    args=arguments(
+                                        args=[arg(arg='self', annotation=None), arg(arg='spec', annotation=None)],
+                                        vararg=None,
+                                        kwonlyargs=[],
+                                        kw_defaults=[],
+                                        kwarg=None,
+                                        defaults=[]),
+                                    body=[
+                                        AugAssign(target=Attribute(value=Name(id='self'), attr='i'),
+                                            op=Add,
+                                            value=Num(n=1)),
+                                        Return(
+                                            value=Call(func=Name(id='str'),
+                                                args=[Attribute(value=Name(id='self'), attr='i')],
+                                                keywords=[]))],
+                                    decorator_list=[],
+                                    returns=None)],
+                            decorator_list=[]),
+                        Assign(targets=[Name(id='x')], value=Call(func=Name(id='X'), args=[], keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[FormattedValue(value=Name(id='x'), conversion=-1, format_spec=None),
+                                            Str(s=' '),
+                                            FormattedValue(value=Name(id='x'), conversion=-1, format_spec=None)]),
+                                    Str(s='1 2')],
+                                keywords=[]))],
+                    decorator_list=[],
+                    returns=None),
+                FunctionDef(name='test_missing_expression',
+                    args=arguments(args=[arg(arg='self', annotation=None)],
+                        vararg=None,
+                        kwonlyargs=[],
+                        kw_defaults=[],
+                        kwarg=None,
+                        defaults=[]),
+                    body=[
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertAllRaise'),
+                                args=[Name(id='SyntaxError'),
+                                    Str(s='f-string: empty expression not allowed'),
+                                    List(
+                                        elts=[Str(s="f'{}'"),
+                                            Str(s="f'{ }'f' {} '"),
+                                            Str(s="f'{!r}'"),
+                                            Str(s="f'{ !r}'"),
+                                            Str(s="f'{10:{ }}'"),
+                                            Str(s="f' { } '"),
+                                            Str(s="f'''{\t\x0c\r\n}'''"),
+                                            Str(s="f'{!x}'"),
+                                            Str(s="f'{ !xr}'"),
+                                            Str(s="f'{!x:}'"),
+                                            Str(s="f'{!x:a}'"),
+                                            Str(s="f'{ !xr:}'"),
+                                            Str(s="f'{ !xr:a}'"),
+                                            Str(s="f'{!}'"),
+                                            Str(s="f'{:}'"),
+                                            Str(s="f'{!'"),
+                                            Str(s="f'{!s:'"),
+                                            Str(s="f'{:'"),
+                                            Str(s="f'{:x'")])],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertAllRaise'),
+                                args=[Name(id='SyntaxError'),
+                                    Str(s='invalid character in identifier'),
+                                    List(elts=[Str(s="f'''{\xa0}'''"), Str(s='\xa0')])],
+                                keywords=[]))],
+                    decorator_list=[],
+                    returns=None),
+                FunctionDef(name='test_parens_in_expressions',
+                    args=arguments(args=[arg(arg='self', annotation=None)],
+                        vararg=None,
+                        kwonlyargs=[],
+                        kw_defaults=[],
+                        kwarg=None,
+                        defaults=[]),
+                    body=[
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[
+                                            FormattedValue(value=Tuple(elts=[Num(n=3)]),
+                                                conversion=-1,
+                                                format_spec=None)]),
+                                    Str(s='(3,)')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertAllRaise'),
+                                args=[Name(id='SyntaxError'),
+                                    Str(s='invalid syntax'),
+                                    List(elts=[Str(s="f'{,}'"), Str(s="f'{,}'")])],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertAllRaise'),
+                                args=[Name(id='SyntaxError'),
+                                    Str(s="f-string: expecting '}'"),
+                                    List(elts=[Str(s="f'{3)+(4}'")])],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertAllRaise'),
+                                args=[Name(id='SyntaxError'),
+                                    Str(s='EOL while scanning string literal'),
+                                    List(elts=[Str(s="f'{\n}'")])],
+                                keywords=[]))],
+                    decorator_list=[],
+                    returns=None),
+                FunctionDef(name='test_backslashes_in_string_part',
+                    args=arguments(args=[arg(arg='self', annotation=None)],
+                        vararg=None,
+                        kwonlyargs=[],
+                        kw_defaults=[],
+                        kwarg=None,
+                        defaults=[]),
+                    body=[
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[JoinedStr(values=[Str(s='\t')]), Str(s='\t')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[Str(s='\\t'), Str(s='\\t')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[JoinedStr(values=[Str(s='\\t')]), Str(s='\\t')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[FormattedValue(value=Num(n=2), conversion=-1, format_spec=None),
+                                            Str(s='\t')]),
+                                    Str(s='2\t')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[FormattedValue(value=Num(n=2), conversion=-1, format_spec=None),
+                                            Str(s='\t'),
+                                            FormattedValue(value=Num(n=3), conversion=-1, format_spec=None)]),
+                                    Str(s='2\t3')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[Str(s='\t'),
+                                            FormattedValue(value=Num(n=3), conversion=-1, format_spec=None)]),
+                                    Str(s='\t3')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[JoinedStr(values=[Str(s='Δ')]), Str(s='Δ')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[Str(s='\\u0394'), Str(s='\\u0394')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[JoinedStr(values=[Str(s='\\u0394')]), Str(s='\\u0394')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[FormattedValue(value=Num(n=2), conversion=-1, format_spec=None),
+                                            Str(s='Δ')]),
+                                    Str(s='2Δ')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[FormattedValue(value=Num(n=2), conversion=-1, format_spec=None),
+                                            Str(s='Δ'),
+                                            FormattedValue(value=Num(n=3), conversion=-1, format_spec=None)]),
+                                    Str(s='2Δ3')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[Str(s='Δ'),
+                                            FormattedValue(value=Num(n=3), conversion=-1, format_spec=None)]),
+                                    Str(s='Δ3')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[JoinedStr(values=[Str(s='Δ')]), Str(s='Δ')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[Str(s='\\U00000394'), Str(s='\\U00000394')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[JoinedStr(values=[Str(s='\\U00000394')]), Str(s='\\U00000394')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[FormattedValue(value=Num(n=2), conversion=-1, format_spec=None),
+                                            Str(s='Δ')]),
+                                    Str(s='2Δ')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[FormattedValue(value=Num(n=2), conversion=-1, format_spec=None),
+                                            Str(s='Δ'),
+                                            FormattedValue(value=Num(n=3), conversion=-1, format_spec=None)]),
+                                    Str(s='2Δ3')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[Str(s='Δ'),
+                                            FormattedValue(value=Num(n=3), conversion=-1, format_spec=None)]),
+                                    Str(s='Δ3')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[JoinedStr(values=[Str(s='Δ')]), Str(s='Δ')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[FormattedValue(value=Num(n=2), conversion=-1, format_spec=None),
+                                            Str(s='Δ')]),
+                                    Str(s='2Δ')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[FormattedValue(value=Num(n=2), conversion=-1, format_spec=None),
+                                            Str(s='Δ'),
+                                            FormattedValue(value=Num(n=3), conversion=-1, format_spec=None)]),
+                                    Str(s='2Δ3')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[Str(s='Δ'),
+                                            FormattedValue(value=Num(n=3), conversion=-1, format_spec=None)]),
+                                    Str(s='Δ3')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[JoinedStr(values=[Str(s='2Δ')]), Str(s='2Δ')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[JoinedStr(values=[Str(s='2Δ3')]), Str(s='2Δ3')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[JoinedStr(values=[Str(s='Δ3')]), Str(s='Δ3')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[JoinedStr(values=[Str(s=' ')]), Str(s=' ')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[Str(s='\\x20'), Str(s='\\x20')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[JoinedStr(values=[Str(s='\\x20')]), Str(s='\\x20')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[FormattedValue(value=Num(n=2), conversion=-1, format_spec=None),
+                                            Str(s=' ')]),
+                                    Str(s='2 ')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[FormattedValue(value=Num(n=2), conversion=-1, format_spec=None),
+                                            Str(s=' '),
+                                            FormattedValue(value=Num(n=3), conversion=-1, format_spec=None)]),
+                                    Str(s='2 3')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[Str(s=' '),
+                                            FormattedValue(value=Num(n=3), conversion=-1, format_spec=None)]),
+                                    Str(s=' 3')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[JoinedStr(values=[Str(s='2 ')]), Str(s='2 ')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[JoinedStr(values=[Str(s='2 3')]), Str(s='2 3')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[JoinedStr(values=[Str(s=' 3')]), Str(s=' 3')],
+                                keywords=[])),
+                        With(
+                            items=[
+                                withitem(
+                                    context_expr=Call(func=Attribute(value=Name(id='self'), attr='assertWarns'),
+                                        args=[Name(id='DeprecationWarning')],
+                                        keywords=[]),
+                                    optional_vars=None)],
+                            body=[
+                                Assign(targets=[Name(id='value')],
+                                    value=Call(func=Name(id='eval'), args=[Str(s="f'\\{6*7}'")], keywords=[]))]),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[Name(id='value'), Str(s='\\42')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[Str(s='\\'),
+                                            FormattedValue(value=BinOp(left=Num(n=6), op=Mult, right=Num(n=7)),
+                                                conversion=-1,
+                                                format_spec=None)]),
+                                    Str(s='\\42')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[Str(s='\\'),
+                                            FormattedValue(value=BinOp(left=Num(n=6), op=Mult, right=Num(n=7)),
+                                                conversion=-1,
+                                                format_spec=None)]),
+                                    Str(s='\\42')],
+                                keywords=[])),
+                        Assign(targets=[Name(id='AMPERSAND')], value=Str(s='spam')),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[JoinedStr(values=[Str(s='&')]), Str(s='&')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[Str(s='\\N'),
+                                            FormattedValue(value=Name(id='AMPERSAND'), conversion=-1, format_spec=None)]),
+                                    Str(s='\\Nspam')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[Str(s='\\N'),
+                                            FormattedValue(value=Name(id='AMPERSAND'), conversion=-1, format_spec=None)]),
+                                    Str(s='\\Nspam')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[JoinedStr(values=[Str(s='\\&')]), Str(s='\\&')],
+                                keywords=[]))],
+                    decorator_list=[],
+                    returns=None),
+                FunctionDef(name='test_misformed_unicode_character_name',
+                    args=arguments(args=[arg(arg='self', annotation=None)],
+                        vararg=None,
+                        kwonlyargs=[],
+                        kw_defaults=[],
+                        kwarg=None,
+                        defaults=[]),
+                    body=[
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertAllRaise'),
+                                args=[Name(id='SyntaxError'),
+                                    Str(
+                                        s="\\(unicode error\\) 'unicodeescape' codec can't decode bytes in position .*: malformed \\\\N character escape"),
+                                    List(
+                                        elts=[Str(s="f'\\N'"),
+                                            Str(s="f'\\N{'"),
+                                            Str(s="f'\\N{GREEK CAPITAL LETTER DELTA'"),
+                                            Str(s="'\\N'"),
+                                            Str(s="'\\N{'"),
+                                            Str(s="'\\N{GREEK CAPITAL LETTER DELTA'")])],
+                                keywords=[]))],
+                    decorator_list=[],
+                    returns=None),
+                FunctionDef(name='test_no_backslashes_in_expression_part',
+                    args=arguments(args=[arg(arg='self', annotation=None)],
+                        vararg=None,
+                        kwonlyargs=[],
+                        kw_defaults=[],
+                        kwarg=None,
+                        defaults=[]),
+                    body=[
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertAllRaise'),
+                                args=[Name(id='SyntaxError'),
+                                    Str(s='f-string expression part cannot include a backslash'),
+                                    List(
+                                        elts=[Str(s="f'{\\'a\\'}'"),
+                                            Str(s="f'{\\t3}'"),
+                                            Str(s="f'{\\}'"),
+                                            Str(s="rf'{\\'a\\'}'"),
+                                            Str(s="rf'{\\t3}'"),
+                                            Str(s="rf'{\\}'"),
+                                            Str(s='rf\'{"\\N{LEFT CURLY BRACKET}"}\''),
+                                            Str(s="f'{\\n}'")])],
+                                keywords=[]))],
+                    decorator_list=[],
+                    returns=None),
+                FunctionDef(name='test_no_escapes_for_braces',
+                    args=arguments(args=[arg(arg='self', annotation=None)],
+                        vararg=None,
+                        kwonlyargs=[],
+                        kw_defaults=[],
+                        kwarg=None,
+                        defaults=[]),
+                    body=[
+                        Expr(value=Str(s='\n        Only literal curly braces begin an expression.\n        ')),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[JoinedStr(values=[Str(s='{1+1}')]), Str(s='{1+1}')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[JoinedStr(values=[Str(s='{1+1')]), Str(s='{1+1')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[JoinedStr(values=[Str(s='{1+1')]), Str(s='{1+1')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[JoinedStr(values=[Str(s='{1+1}')]), Str(s='{1+1}')],
+                                keywords=[]))],
+                    decorator_list=[],
+                    returns=None),
+                FunctionDef(name='test_newlines_in_expressions',
+                    args=arguments(args=[arg(arg='self', annotation=None)],
+                        vararg=None,
+                        kwonlyargs=[],
+                        kw_defaults=[],
+                        kwarg=None,
+                        defaults=[]),
+                    body=[
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(values=[FormattedValue(value=Num(n=0), conversion=-1, format_spec=None)]),
+                                    Str(s='0')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[
+                                            FormattedValue(value=BinOp(left=Num(n=3), op=Add, right=Num(n=4)),
+                                                conversion=-1,
+                                                format_spec=None)]),
+                                    Str(s='7')],
+                                keywords=[]))],
+                    decorator_list=[],
+                    returns=None),
+                FunctionDef(name='test_lambda',
+                    args=arguments(args=[arg(arg='self', annotation=None)],
+                        vararg=None,
+                        kwonlyargs=[],
+                        kw_defaults=[],
+                        kwarg=None,
+                        defaults=[]),
+                    body=[Assign(targets=[Name(id='x')], value=Num(n=5)),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[
+                                            FormattedValue(
+                                                value=Call(
+                                                    func=Lambda(
+                                                        args=arguments(args=[arg(arg='y', annotation=None)],
+                                                            vararg=None,
+                                                            kwonlyargs=[],
+                                                            kw_defaults=[],
+                                                            kwarg=None,
+                                                            defaults=[]),
+                                                        body=BinOp(left=Name(id='x'), op=Mult, right=Name(id='y'))),
+                                                    args=[Str(s='8')],
+                                                    keywords=[]),
+                                                conversion=114,
+                                                format_spec=None)]),
+                                    Str(s="'88888'")],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[
+                                            FormattedValue(
+                                                value=Call(
+                                                    func=Lambda(
+                                                        args=arguments(args=[arg(arg='y', annotation=None)],
+                                                            vararg=None,
+                                                            kwonlyargs=[],
+                                                            kw_defaults=[],
+                                                            kwarg=None,
+                                                            defaults=[]),
+                                                        body=BinOp(left=Name(id='x'), op=Mult, right=Name(id='y'))),
+                                                    args=[Str(s='8')],
+                                                    keywords=[]),
+                                                conversion=114,
+                                                format_spec=JoinedStr(values=[Str(s='10')]))]),
+                                    Str(s="'88888'   ")],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[
+                                            FormattedValue(
+                                                value=Call(
+                                                    func=Lambda(
+                                                        args=arguments(args=[arg(arg='y', annotation=None)],
+                                                            vararg=None,
+                                                            kwonlyargs=[],
+                                                            kw_defaults=[],
+                                                            kwarg=None,
+                                                            defaults=[]),
+                                                        body=BinOp(left=Name(id='x'), op=Mult, right=Name(id='y'))),
+                                                    args=[Str(s='8')],
+                                                    keywords=[]),
+                                                conversion=-1,
+                                                format_spec=JoinedStr(values=[Str(s='10')]))]),
+                                    Str(s='88888     ')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertAllRaise'),
+                                args=[Name(id='SyntaxError'),
+                                    Str(s='unexpected EOF while parsing'),
+                                    List(elts=[Str(s="f'{lambda x:x}'")])],
+                                keywords=[]))],
+                    decorator_list=[],
+                    returns=None),
+                FunctionDef(name='test_yield',
+                    args=arguments(args=[arg(arg='self', annotation=None)],
+                        vararg=None,
+                        kwonlyargs=[],
+                        kw_defaults=[],
+                        kwarg=None,
+                        defaults=[]),
+                    body=[
+                        FunctionDef(name='fn',
+                            args=arguments(args=[arg(arg='y', annotation=None)],
+                                vararg=None,
+                                kwonlyargs=[],
+                                kw_defaults=[],
+                                kwarg=None,
+                                defaults=[]),
+                            body=[
+                                Expr(
+                                    value=JoinedStr(
+                                        values=[Str(s='y:'),
+                                            FormattedValue(
+                                                value=Yield(value=BinOp(left=Name(id='y'), op=Mult, right=Num(n=2))),
+                                                conversion=-1,
+                                                format_spec=None)]))],
+                            decorator_list=[],
+                            returns=None),
+                        Assign(targets=[Name(id='g')], value=Call(func=Name(id='fn'), args=[Num(n=4)], keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[Call(func=Name(id='next'), args=[Name(id='g')], keywords=[]), Num(n=8)],
+                                keywords=[]))],
+                    decorator_list=[],
+                    returns=None),
+                FunctionDef(name='test_yield_send',
+                    args=arguments(args=[arg(arg='self', annotation=None)],
+                        vararg=None,
+                        kwonlyargs=[],
+                        kw_defaults=[],
+                        kwarg=None,
+                        defaults=[]),
+                    body=[
+                        FunctionDef(name='fn',
+                            args=arguments(args=[arg(arg='x', annotation=None)],
+                                vararg=None,
+                                kwonlyargs=[],
+                                kw_defaults=[],
+                                kwarg=None,
+                                defaults=[]),
+                            body=[
+                                Expr(
+                                    value=Yield(
+                                        value=JoinedStr(
+                                            values=[Str(s='x:'),
+                                                FormattedValue(
+                                                    value=Yield(
+                                                        value=Lambda(
+                                                            args=arguments(args=[arg(arg='i', annotation=None)],
+                                                                vararg=None,
+                                                                kwonlyargs=[],
+                                                                kw_defaults=[],
+                                                                kwarg=None,
+                                                                defaults=[]),
+                                                            body=BinOp(left=Name(id='x'), op=Mult, right=Name(id='i')))),
+                                                    conversion=-1,
+                                                    format_spec=None)])))],
+                            decorator_list=[],
+                            returns=None),
+                        Assign(targets=[Name(id='g')], value=Call(func=Name(id='fn'), args=[Num(n=10)], keywords=[])),
+                        Assign(targets=[Name(id='the_lambda')],
+                            value=Call(func=Name(id='next'), args=[Name(id='g')], keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[Call(func=Name(id='the_lambda'), args=[Num(n=4)], keywords=[]), Num(n=40)],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    Call(func=Attribute(value=Name(id='g'), attr='send'),
+                                        args=[Str(s='string')],
+                                        keywords=[]),
+                                    Str(s='x:string')],
+                                keywords=[]))],
+                    decorator_list=[],
+                    returns=None),
+                FunctionDef(name='test_expressions_with_triple_quoted_strings',
+                    args=arguments(args=[arg(arg='self', annotation=None)],
+                        vararg=None,
+                        kwonlyargs=[],
+                        kw_defaults=[],
+                        kwarg=None,
+                        defaults=[]),
+                    body=[
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[FormattedValue(value=Str(s='x'), conversion=-1, format_spec=None)]),
+                                    Str(s='x')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[FormattedValue(value=Str(s="eric's"), conversion=-1, format_spec=None)]),
+                                    Str(s="eric's")],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[
+                                            FormattedValue(value=Str(s='xeric"sy'), conversion=-1, format_spec=None)]),
+                                    Str(s='xeric"sy')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[FormattedValue(value=Str(s='xeric"s'), conversion=-1, format_spec=None),
+                                            ]),
+                                    Str(s='xeric"s')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[FormattedValue(value=Str(s='eric"sy'), conversion=-1, format_spec=None),
+                                            ]),
+                                    Str(s='eric"sy')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[
+                                            FormattedValue(value=Str(s='xeric"sy'), conversion=-1, format_spec=None)]),
+                                    Str(s='xeric"sy')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[
+                                            FormattedValue(value=Str(s='xeric"sy'), conversion=-1, format_spec=None)]),
+                                    Str(s='xeric"sy')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[
+                                            FormattedValue(value=Str(s='xeric"sy'), conversion=-1, format_spec=None)]),
+                                    Str(s='xeric"sy')],
+                                keywords=[]))],
+                    decorator_list=[],
+                    returns=None),
+                FunctionDef(name='test_multiple_vars',
+                    args=arguments(args=[arg(arg='self', annotation=None)],
+                        vararg=None,
+                        kwonlyargs=[],
+                        kw_defaults=[],
+                        kwarg=None,
+                        defaults=[]),
+                    body=[Assign(targets=[Name(id='x')], value=Num(n=98)),
+                        Assign(targets=[Name(id='y')], value=Str(s='abc')),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[FormattedValue(value=Name(id='x'), conversion=-1, format_spec=None),
+                                            FormattedValue(value=Name(id='y'), conversion=-1, format_spec=None)]),
+                                    Str(s='98abc')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[Str(s='X'),
+                                            FormattedValue(value=Name(id='x'), conversion=-1, format_spec=None),
+                                            FormattedValue(value=Name(id='y'), conversion=-1, format_spec=None)]),
+                                    Str(s='X98abc')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[FormattedValue(value=Name(id='x'), conversion=-1, format_spec=None),
+                                            Str(s='X'),
+                                            FormattedValue(value=Name(id='y'), conversion=-1, format_spec=None)]),
+                                    Str(s='98Xabc')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[FormattedValue(value=Name(id='x'), conversion=-1, format_spec=None),
+                                            FormattedValue(value=Name(id='y'), conversion=-1, format_spec=None),
+                                            Str(s='X')]),
+                                    Str(s='98abcX')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[Str(s='X'),
+                                            FormattedValue(value=Name(id='x'), conversion=-1, format_spec=None),
+                                            Str(s='Y'),
+                                            FormattedValue(value=Name(id='y'), conversion=-1, format_spec=None)]),
+                                    Str(s='X98Yabc')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[Str(s='X'),
+                                            FormattedValue(value=Name(id='x'), conversion=-1, format_spec=None),
+                                            FormattedValue(value=Name(id='y'), conversion=-1, format_spec=None),
+                                            Str(s='Y')]),
+                                    Str(s='X98abcY')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[FormattedValue(value=Name(id='x'), conversion=-1, format_spec=None),
+                                            Str(s='X'),
+                                            FormattedValue(value=Name(id='y'), conversion=-1, format_spec=None),
+                                            Str(s='Y')]),
+                                    Str(s='98XabcY')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[Str(s='X'),
+                                            FormattedValue(value=Name(id='x'), conversion=-1, format_spec=None),
+                                            Str(s='Y'),
+                                            FormattedValue(value=Name(id='y'), conversion=-1, format_spec=None),
+                                            Str(s='Z')]),
+                                    Str(s='X98YabcZ')],
+                                keywords=[]))],
+                    decorator_list=[],
+                    returns=None),
+                FunctionDef(name='test_closure',
+                    args=arguments(args=[arg(arg='self', annotation=None)],
+                        vararg=None,
+                        kwonlyargs=[],
+                        kw_defaults=[],
+                        kwarg=None,
+                        defaults=[]),
+                    body=[
+                        FunctionDef(name='outer',
+                            args=arguments(args=[arg(arg='x', annotation=None)],
+                                vararg=None,
+                                kwonlyargs=[],
+                                kw_defaults=[],
+                                kwarg=None,
+                                defaults=[]),
+                            body=[
+                                FunctionDef(name='inner',
+                                    args=arguments(args=[],
+                                        vararg=None,
+                                        kwonlyargs=[],
+                                        kw_defaults=[],
+                                        kwarg=None,
+                                        defaults=[]),
+                                    body=[
+                                        Return(
+                                            value=JoinedStr(
+                                                values=[Str(s='x:'),
+                                                    FormattedValue(value=Name(id='x'), conversion=-1, format_spec=None)]))],
+                                    decorator_list=[],
+                                    returns=None),
+                                Return(value=Name(id='inner'))],
+                            decorator_list=[],
+                            returns=None),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    Call(func=Call(func=Name(id='outer'), args=[Str(s='987')], keywords=[]),
+                                        args=[],
+                                        keywords=[]),
+                                    Str(s='x:987')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    Call(func=Call(func=Name(id='outer'), args=[Num(n=7)], keywords=[]),
+                                        args=[],
+                                        keywords=[]),
+                                    Str(s='x:7')],
+                                keywords=[]))],
+                    decorator_list=[],
+                    returns=None),
+                FunctionDef(name='test_arguments',
+                    args=arguments(args=[arg(arg='self', annotation=None)],
+                        vararg=None,
+                        kwonlyargs=[],
+                        kw_defaults=[],
+                        kwarg=None,
+                        defaults=[]),
+                    body=[Assign(targets=[Name(id='y')], value=Num(n=2)),
+                        FunctionDef(name='f',
+                            args=arguments(
+                                args=[arg(arg='x', annotation=None), arg(arg='width', annotation=None)],
+                                vararg=None,
+                                kwonlyargs=[],
+                                kw_defaults=[],
+                                kwarg=None,
+                                defaults=[]),
+                            body=[
+                                Return(
+                                    value=JoinedStr(
+                                        values=[Str(s='x='),
+                                            FormattedValue(value=BinOp(left=Name(id='x'), op=Mult, right=Name(id='y')),
+                                                conversion=-1,
+                                                format_spec=JoinedStr(
+                                                    values=[
+                                                        FormattedValue(value=Name(id='width'),
+                                                            conversion=-1,
+                                                            format_spec=None)]))]))],
+                            decorator_list=[],
+                            returns=None),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[Call(func=Name(id='f'), args=[Str(s='foo'), Num(n=10)], keywords=[]),
+                                    Str(s='x=foofoo    ')],
+                                keywords=[])),
+                        Assign(targets=[Name(id='x')], value=Str(s='bar')),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[Call(func=Name(id='f'), args=[Num(n=10), Num(n=10)], keywords=[]),
+                                    Str(s='x=        20')],
+                                keywords=[]))],
+                    decorator_list=[],
+                    returns=None),
+                FunctionDef(name='test_locals',
+                    args=arguments(args=[arg(arg='self', annotation=None)],
+                        vararg=None,
+                        kwonlyargs=[],
+                        kw_defaults=[],
+                        kwarg=None,
+                        defaults=[]),
+                    body=[Assign(targets=[Name(id='value')], value=Num(n=123)),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[Str(s='v:'),
+                                            FormattedValue(value=Name(id='value'), conversion=-1, format_spec=None)]),
+                                    Str(s='v:123')],
+                                keywords=[]))],
+                    decorator_list=[],
+                    returns=None),
+                FunctionDef(name='test_missing_variable',
+                    args=arguments(args=[arg(arg='self', annotation=None)],
+                        vararg=None,
+                        kwonlyargs=[],
+                        kw_defaults=[],
+                        kwarg=None,
+                        defaults=[]),
+                    body=[
+                        With(
+                            items=[
+                                withitem(
+                                    context_expr=Call(func=Attribute(value=Name(id='self'), attr='assertRaises'),
+                                        args=[Name(id='NameError')],
+                                        keywords=[]),
+                                    optional_vars=None)],
+                            body=[
+                                Expr(
+                                    value=JoinedStr(
+                                        values=[Str(s='v:'),
+                                            FormattedValue(value=Name(id='value'), conversion=-1, format_spec=None)]))])],
+                    decorator_list=[],
+                    returns=None),
+                FunctionDef(name='test_missing_format_spec',
+                    args=arguments(args=[arg(arg='self', annotation=None)],
+                        vararg=None,
+                        kwonlyargs=[],
+                        kw_defaults=[],
+                        kwarg=None,
+                        defaults=[]),
+                    body=[
+                        ClassDef(name='O',
+                            bases=[],
+                            keywords=[],
+                            body=[
+                                FunctionDef(name='__format__',
+                                    args=arguments(
+                                        args=[arg(arg='self', annotation=None), arg(arg='spec', annotation=None)],
+                                        vararg=None,
+                                        kwonlyargs=[],
+                                        kw_defaults=[],
+                                        kwarg=None,
+                                        defaults=[]),
+                                    body=[
+                                        If(test=UnaryOp(op=Not, operand=Name(id='spec')),
+                                            body=[Return(value=Str(s='*'))],
+                                            orelse=[]),
+                                        Return(value=Name(id='spec'))],
+                                    decorator_list=[],
+                                    returns=None)],
+                            decorator_list=[]),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[
+                                            FormattedValue(value=Call(func=Name(id='O'), args=[], keywords=[]),
+                                                conversion=-1,
+                                                format_spec=JoinedStr(values=[Str(s='x')]))]),
+                                    Str(s='x')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[
+                                            FormattedValue(value=Call(func=Name(id='O'), args=[], keywords=[]),
+                                                conversion=-1,
+                                                format_spec=None)]),
+                                    Str(s='*')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[
+                                            FormattedValue(value=Call(func=Name(id='O'), args=[], keywords=[]),
+                                                conversion=-1,
+                                                format_spec=JoinedStr(values=[]))]),
+                                    Str(s='*')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[
+                                            FormattedValue(value=Num(n=3),
+                                                conversion=-1,
+                                                format_spec=JoinedStr(values=[]))]),
+                                    Str(s='3')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[
+                                            FormattedValue(value=Num(n=3),
+                                                conversion=115,
+                                                format_spec=JoinedStr(values=[]))]),
+                                    Str(s='3')],
+                                keywords=[]))],
+                    decorator_list=[],
+                    returns=None),
+                FunctionDef(name='test_global',
+                    args=arguments(args=[arg(arg='self', annotation=None)],
+                        vararg=None,
+                        kwonlyargs=[],
+                        kw_defaults=[],
+                        kwarg=None,
+                        defaults=[]),
+                    body=[
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[Str(s='g:'),
+                                            FormattedValue(value=Name(id='a_global'), conversion=-1, format_spec=None)]),
+                                    Str(s='g:global variable')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[Str(s='g:'),
+                                            FormattedValue(value=Name(id='a_global'), conversion=114, format_spec=None)]),
+                                    Str(s="g:'global variable'")],
+                                keywords=[])),
+                        Assign(targets=[Name(id='a_local')], value=Str(s='local variable')),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[Str(s='g:'),
+                                            FormattedValue(value=Name(id='a_global'), conversion=-1, format_spec=None),
+                                            Str(s=' l:'),
+                                            FormattedValue(value=Name(id='a_local'), conversion=-1, format_spec=None)]),
+                                    Str(s='g:global variable l:local variable')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[Str(s='g:'),
+                                            FormattedValue(value=Name(id='a_global'), conversion=114, format_spec=None)]),
+                                    Str(s="g:'global variable'")],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[Str(s='g:'),
+                                            FormattedValue(value=Name(id='a_global'), conversion=-1, format_spec=None),
+                                            Str(s=' l:'),
+                                            FormattedValue(value=Name(id='a_local'), conversion=114, format_spec=None)]),
+                                    Str(s="g:global variable l:'local variable'")],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertIn'),
+                                args=[Str(s="module 'unittest' from"),
+                                    JoinedStr(
+                                        values=[
+                                            FormattedValue(value=Name(id='unittest'), conversion=-1, format_spec=None)])],
+                                keywords=[]))],
+                    decorator_list=[],
+                    returns=None),
+                FunctionDef(name='test_shadowed_global',
+                    args=arguments(args=[arg(arg='self', annotation=None)],
+                        vararg=None,
+                        kwonlyargs=[],
+                        kw_defaults=[],
+                        kwarg=None,
+                        defaults=[]),
+                    body=[Assign(targets=[Name(id='a_global')], value=Str(s='really a local')),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[Str(s='g:'),
+                                            FormattedValue(value=Name(id='a_global'), conversion=-1, format_spec=None)]),
+                                    Str(s='g:really a local')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[Str(s='g:'),
+                                            FormattedValue(value=Name(id='a_global'), conversion=114, format_spec=None)]),
+                                    Str(s="g:'really a local'")],
+                                keywords=[])),
+                        Assign(targets=[Name(id='a_local')], value=Str(s='local variable')),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[Str(s='g:'),
+                                            FormattedValue(value=Name(id='a_global'), conversion=-1, format_spec=None),
+                                            Str(s=' l:'),
+                                            FormattedValue(value=Name(id='a_local'), conversion=-1, format_spec=None)]),
+                                    Str(s='g:really a local l:local variable')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[Str(s='g:'),
+                                            FormattedValue(value=Name(id='a_global'), conversion=114, format_spec=None)]),
+                                    Str(s="g:'really a local'")],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[Str(s='g:'),
+                                            FormattedValue(value=Name(id='a_global'), conversion=-1, format_spec=None),
+                                            Str(s=' l:'),
+                                            FormattedValue(value=Name(id='a_local'), conversion=114, format_spec=None)]),
+                                    Str(s="g:really a local l:'local variable'")],
+                                keywords=[]))],
+                    decorator_list=[],
+                    returns=None),
+                FunctionDef(name='test_call',
+                    args=arguments(args=[arg(arg='self', annotation=None)],
+                        vararg=None,
+                        kwonlyargs=[],
+                        kw_defaults=[],
+                        kwarg=None,
+                        defaults=[]),
+                    body=[
+                        FunctionDef(name='foo',
+                            args=arguments(args=[arg(arg='x', annotation=None)],
+                                vararg=None,
+                                kwonlyargs=[],
+                                kw_defaults=[],
+                                kwarg=None,
+                                defaults=[]),
+                            body=[
+                                Return(
+                                    value=BinOp(left=Str(s='x='),
+                                        op=Add,
+                                        right=Call(func=Name(id='str'), args=[Name(id='x')], keywords=[])))],
+                            decorator_list=[],
+                            returns=None),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[
+                                            FormattedValue(value=Call(func=Name(id='foo'), args=[Num(n=10)], keywords=[]),
+                                                conversion=-1,
+                                                format_spec=None)]),
+                                    Str(s='x=10')],
+                                keywords=[]))],
+                    decorator_list=[],
+                    returns=None),
+                FunctionDef(name='test_nested_fstrings',
+                    args=arguments(args=[arg(arg='self', annotation=None)],
+                        vararg=None,
+                        kwonlyargs=[],
+                        kw_defaults=[],
+                        kwarg=None,
+                        defaults=[]),
+                    body=[Assign(targets=[Name(id='y')], value=Num(n=5)),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[
+                                            FormattedValue(
+                                                value=BinOp(
+                                                    left=JoinedStr(
+                                                        values=[
+                                                            FormattedValue(value=Num(n=0),
+                                                                conversion=-1,
+                                                                format_spec=None)]),
+                                                    op=Mult,
+                                                    right=Num(n=3)),
+                                                conversion=-1,
+                                                format_spec=None)]),
+                                    Str(s='000')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[
+                                            FormattedValue(
+                                                value=BinOp(
+                                                    left=JoinedStr(
+                                                        values=[
+                                                            FormattedValue(value=Name(id='y'),
+                                                                conversion=-1,
+                                                                format_spec=None)]),
+                                                    op=Mult,
+                                                    right=Num(n=3)),
+                                                conversion=-1,
+                                                format_spec=None)]),
+                                    Str(s='555')],
+                                keywords=[]))],
+                    decorator_list=[],
+                    returns=None),
+                FunctionDef(name='test_invalid_string_prefixes',
+                    args=arguments(args=[arg(arg='self', annotation=None)],
+                        vararg=None,
+                        kwonlyargs=[],
+                        kw_defaults=[],
+                        kwarg=None,
+                        defaults=[]),
+                    body=[
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertAllRaise'),
+                                args=[Name(id='SyntaxError'),
+                                    Str(s='unexpected EOF while parsing'),
+                                    List(
+                                        elts=[Str(s="fu''"),
+                                            Str(s="uf''"),
+                                            Str(s="Fu''"),
+                                            Str(s="fU''"),
+                                            Str(s="Uf''"),
+                                            Str(s="uF''"),
+                                            Str(s="ufr''"),
+                                            Str(s="urf''"),
+                                            Str(s="fur''"),
+                                            Str(s="fru''"),
+                                            Str(s="rfu''"),
+                                            Str(s="ruf''"),
+                                            Str(s="FUR''"),
+                                            Str(s="Fur''"),
+                                            Str(s="fb''"),
+                                            Str(s="fB''"),
+                                            Str(s="Fb''"),
+                                            Str(s="FB''"),
+                                            Str(s="bf''"),
+                                            Str(s="bF''"),
+                                            Str(s="Bf''"),
+                                            Str(s="BF''")])],
+                                keywords=[]))],
+                    decorator_list=[],
+                    returns=None),
+                FunctionDef(name='test_leading_trailing_spaces',
+                    args=arguments(args=[arg(arg='self', annotation=None)],
+                        vararg=None,
+                        kwonlyargs=[],
+                        kw_defaults=[],
+                        kwarg=None,
+                        defaults=[]),
+                    body=[
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(values=[FormattedValue(value=Num(n=3), conversion=-1, format_spec=None)]),
+                                    Str(s='3')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(values=[FormattedValue(value=Num(n=3), conversion=-1, format_spec=None)]),
+                                    Str(s='3')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(values=[FormattedValue(value=Num(n=3), conversion=-1, format_spec=None)]),
+                                    Str(s='3')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(values=[FormattedValue(value=Num(n=3), conversion=-1, format_spec=None)]),
+                                    Str(s='3')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[Str(s='expr='),
+                                            FormattedValue(
+                                                value=DictComp(key=Name(id='x'),
+                                                    value=Name(id='y'),
+                                                    generators=[
+                                                        comprehension(target=Tuple(elts=[Name(id='x'), Name(id='y')]),
+                                                            iter=List(elts=[Tuple(elts=[Num(n=1), Num(n=2)])]),
+                                                            ifs=[],
+                                                            is_async=0)]),
+                                                conversion=-1,
+                                                format_spec=None)]),
+                                    Str(s='expr={1: 2}')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[Str(s='expr='),
+                                            FormattedValue(
+                                                value=DictComp(key=Name(id='x'),
+                                                    value=Name(id='y'),
+                                                    generators=[
+                                                        comprehension(target=Tuple(elts=[Name(id='x'), Name(id='y')]),
+                                                            iter=List(elts=[Tuple(elts=[Num(n=1), Num(n=2)])]),
+                                                            ifs=[],
+                                                            is_async=0)]),
+                                                conversion=-1,
+                                                format_spec=None)]),
+                                    Str(s='expr={1: 2}')],
+                                keywords=[]))],
+                    decorator_list=[],
+                    returns=None),
+                FunctionDef(name='test_not_equal',
+                    args=arguments(args=[arg(arg='self', annotation=None)],
+                        vararg=None,
+                        kwonlyargs=[],
+                        kw_defaults=[],
+                        kwarg=None,
+                        defaults=[]),
+                    body=[
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[
+                                            FormattedValue(
+                                                value=Compare(left=Num(n=3), ops=[NotEq], comparators=[Num(n=4)]),
+                                                conversion=-1,
+                                                format_spec=None)]),
+                                    Str(s='True')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[
+                                            FormattedValue(
+                                                value=Compare(left=Num(n=3), ops=[NotEq], comparators=[Num(n=4)]),
+                                                conversion=-1,
+                                                format_spec=JoinedStr(values=[]))]),
+                                    Str(s='True')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[
+                                            FormattedValue(
+                                                value=Compare(left=Num(n=3), ops=[NotEq], comparators=[Num(n=4)]),
+                                                conversion=115,
+                                                format_spec=None)]),
+                                    Str(s='True')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[
+                                            FormattedValue(
+                                                value=Compare(left=Num(n=3), ops=[NotEq], comparators=[Num(n=4)]),
+                                                conversion=115,
+                                                format_spec=JoinedStr(values=[Str(s='.3')]))]),
+                                    Str(s='Tru')],
+                                keywords=[]))],
+                    decorator_list=[],
+                    returns=None),
+                FunctionDef(name='test_conversions',
+                    args=arguments(args=[arg(arg='self', annotation=None)],
+                        vararg=None,
+                        kwonlyargs=[],
+                        kw_defaults=[],
+                        kwarg=None,
+                        defaults=[]),
+                    body=[
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[
+                                            FormattedValue(value=Num(n=3.14),
+                                                conversion=-1,
+                                                format_spec=JoinedStr(values=[Str(s='10.10')]))]),
+                                    Str(s='      3.14')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[
+                                            FormattedValue(value=Num(n=3.14),
+                                                conversion=115,
+                                                format_spec=JoinedStr(values=[Str(s='10.10')]))]),
+                                    Str(s='3.14      ')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[
+                                            FormattedValue(value=Num(n=3.14),
+                                                conversion=114,
+                                                format_spec=JoinedStr(values=[Str(s='10.10')]))]),
+                                    Str(s='3.14      ')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[
+                                            FormattedValue(value=Num(n=3.14),
+                                                conversion=97,
+                                                format_spec=JoinedStr(values=[Str(s='10.10')]))]),
+                                    Str(s='3.14      ')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[FormattedValue(value=Str(s='a'), conversion=-1, format_spec=None)]),
+                                    Str(s='a')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[FormattedValue(value=Str(s='a'), conversion=114, format_spec=None)]),
+                                    Str(s="'a'")],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[FormattedValue(value=Str(s='a'), conversion=97, format_spec=None)]),
+                                    Str(s="'a'")],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[FormattedValue(value=Str(s='a!r'), conversion=-1, format_spec=None)]),
+                                    Str(s='a!r')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[
+                                            FormattedValue(value=Num(n=3.14),
+                                                conversion=-1,
+                                                format_spec=JoinedStr(values=[Str(s='!<10.10')]))]),
+                                    Str(s='3.14!!!!!!')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertAllRaise'),
+                                args=[Name(id='SyntaxError'),
+                                    Str(s='f-string: invalid conversion character'),
+                                    List(
+                                        elts=[Str(s="f'{3!g}'"),
+                                            Str(s="f'{3!A}'"),
+                                            Str(s="f'{3!3}'"),
+                                            Str(s="f'{3!G}'"),
+                                            Str(s="f'{3!!}'"),
+                                            Str(s="f'{3!:}'"),
+                                            Str(s="f'{3! s}'")])],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertAllRaise'),
+                                args=[Name(id='SyntaxError'),
+                                    Str(s="f-string: expecting '}'"),
+                                    List(
+                                        elts=[Str(s="f'{x!s{y}}'"),
+                                            Str(s="f'{3!ss}'"),
+                                            Str(s="f'{3!ss:}'"),
+                                            Str(s="f'{3!ss:s}'")])],
+                                keywords=[]))],
+                    decorator_list=[],
+                    returns=None),
+                FunctionDef(name='test_assignment',
+                    args=arguments(args=[arg(arg='self', annotation=None)],
+                        vararg=None,
+                        kwonlyargs=[],
+                        kw_defaults=[],
+                        kwarg=None,
+                        defaults=[]),
+                    body=[
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertAllRaise'),
+                                args=[Name(id='SyntaxError'),
+                                    Str(s='invalid syntax'),
+                                    List(elts=[Str(s="f'' = 3"), Str(s="f'{0}' = x"), Str(s="f'{x}' = x")])],
+                                keywords=[]))],
+                    decorator_list=[],
+                    returns=None),
+                FunctionDef(name='test_del',
+                    args=arguments(args=[arg(arg='self', annotation=None)],
+                        vararg=None,
+                        kwonlyargs=[],
+                        kw_defaults=[],
+                        kwarg=None,
+                        defaults=[]),
+                    body=[
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertAllRaise'),
+                                args=[Name(id='SyntaxError'),
+                                    Str(s='invalid syntax'),
+                                    List(elts=[Str(s="del f''"), Str(s="del '' f''")])],
+                                keywords=[]))],
+                    decorator_list=[],
+                    returns=None),
+                FunctionDef(name='test_mismatched_braces',
+                    args=arguments(args=[arg(arg='self', annotation=None)],
+                        vararg=None,
+                        kwonlyargs=[],
+                        kw_defaults=[],
+                        kwarg=None,
+                        defaults=[]),
+                    body=[
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertAllRaise'),
+                                args=[Name(id='SyntaxError'),
+                                    Str(s="f-string: single '}' is not allowed"),
+                                    List(
+                                        elts=[Str(s="f'{{}'"),
+                                            Str(s="f'{{}}}'"),
+                                            Str(s="f'}'"),
+                                            Str(s="f'x}'"),
+                                            Str(s="f'x}x'"),
+                                            Str(s="f'\\u007b}'"),
+                                            Str(s="f'{3:}>10}'"),
+                                            Str(s="f'{3:}}>10}'")])],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertAllRaise'),
+                                args=[Name(id='SyntaxError'),
+                                    Str(s="f-string: expecting '}'"),
+                                    List(
+                                        elts=[Str(s="f'{3:{{>10}'"),
+                                            Str(s="f'{3'"),
+                                            Str(s="f'{3!'"),
+                                            Str(s="f'{3:'"),
+                                            Str(s="f'{3!s'"),
+                                            Str(s="f'{3!s:'"),
+                                            Str(s="f'{3!s:3'"),
+                                            Str(s="f'x{'"),
+                                            Str(s="f'x{x'"),
+                                            Str(s="f'{x'"),
+                                            Str(s="f'{3:s'"),
+                                            Str(s="f'{{{'"),
+                                            Str(s="f'{{}}{'"),
+                                            Str(s="f'{'")])],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[FormattedValue(value=Str(s='{'), conversion=-1, format_spec=None)]),
+                                    Str(s='{')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[FormattedValue(value=Str(s='}'), conversion=-1, format_spec=None)]),
+                                    Str(s='}')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[
+                                            FormattedValue(value=Num(n=3),
+                                                conversion=-1,
+                                                format_spec=JoinedStr(
+                                                    values=[
+                                                        FormattedValue(value=Str(s='}'),
+                                                            conversion=-1,
+                                                            format_spec=None),
+                                                        Str(s='>10')]))]),
+                                    Str(s='}}}}}}}}}3')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[
+                                            FormattedValue(value=Num(n=2),
+                                                conversion=-1,
+                                                format_spec=JoinedStr(
+                                                    values=[
+                                                        FormattedValue(value=Str(s='{'),
+                                                            conversion=-1,
+                                                            format_spec=None),
+                                                        Str(s='>10')]))]),
+                                    Str(s='{{{{{{{{{2')],
+                                keywords=[]))],
+                    decorator_list=[],
+                    returns=None),
+                FunctionDef(name='test_if_conditional',
+                    args=arguments(args=[arg(arg='self', annotation=None)],
+                        vararg=None,
+                        kwonlyargs=[],
+                        kw_defaults=[],
+                        kwarg=None,
+                        defaults=[]),
+                    body=[
+                        FunctionDef(name='test_fstring',
+                            args=arguments(
+                                args=[arg(arg='x', annotation=None), arg(arg='expected', annotation=None)],
+                                vararg=None,
+                                kwonlyargs=[],
+                                kw_defaults=[],
+                                kwarg=None,
+                                defaults=[]),
+                            body=[Assign(targets=[Name(id='flag')], value=Num(n=0)),
+                                If(
+                                    test=JoinedStr(
+                                        values=[FormattedValue(value=Name(id='x'), conversion=-1, format_spec=None)]),
+                                    body=[Assign(targets=[Name(id='flag')], value=Num(n=1))],
+                                    orelse=[Assign(targets=[Name(id='flag')], value=Num(n=2))]),
+                                Expr(
+                                    value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                        args=[Name(id='flag'), Name(id='expected')],
+                                        keywords=[]))],
+                            decorator_list=[],
+                            returns=None),
+                        FunctionDef(name='test_concat_empty',
+                            args=arguments(
+                                args=[arg(arg='x', annotation=None), arg(arg='expected', annotation=None)],
+                                vararg=None,
+                                kwonlyargs=[],
+                                kw_defaults=[],
+                                kwarg=None,
+                                defaults=[]),
+                            body=[Assign(targets=[Name(id='flag')], value=Num(n=0)),
+                                If(
+                                    test=JoinedStr(
+                                        values=[FormattedValue(value=Name(id='x'), conversion=-1, format_spec=None)]),
+                                    body=[Assign(targets=[Name(id='flag')], value=Num(n=1))],
+                                    orelse=[Assign(targets=[Name(id='flag')], value=Num(n=2))]),
+                                Expr(
+                                    value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                        args=[Name(id='flag'), Name(id='expected')],
+                                        keywords=[]))],
+                            decorator_list=[],
+                            returns=None),
+                        FunctionDef(name='test_concat_non_empty',
+                            args=arguments(
+                                args=[arg(arg='x', annotation=None), arg(arg='expected', annotation=None)],
+                                vararg=None,
+                                kwonlyargs=[],
+                                kw_defaults=[],
+                                kwarg=None,
+                                defaults=[]),
+                            body=[Assign(targets=[Name(id='flag')], value=Num(n=0)),
+                                If(
+                                    test=JoinedStr(
+                                        values=[Str(s=' '),
+                                            FormattedValue(value=Name(id='x'), conversion=-1, format_spec=None)]),
+                                    body=[Assign(targets=[Name(id='flag')], value=Num(n=1))],
+                                    orelse=[Assign(targets=[Name(id='flag')], value=Num(n=2))]),
+                                Expr(
+                                    value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                        args=[Name(id='flag'), Name(id='expected')],
+                                        keywords=[]))],
+                            decorator_list=[],
+                            returns=None),
+                        Expr(value=Call(func=Name(id='test_fstring'), args=[Str(s=''), Num(n=2)], keywords=[])),
+                        Expr(value=Call(func=Name(id='test_fstring'), args=[Str(s=' '), Num(n=1)], keywords=[])),
+                        Expr(value=Call(func=Name(id='test_concat_empty'), args=[Str(s=''), Num(n=2)], keywords=[])),
+                        Expr(value=Call(func=Name(id='test_concat_empty'), args=[Str(s=' '), Num(n=1)], keywords=[])),
+                        Expr(
+                            value=Call(func=Name(id='test_concat_non_empty'), args=[Str(s=''), Num(n=1)], keywords=[])),
+                        Expr(
+                            value=Call(func=Name(id='test_concat_non_empty'), args=[Str(s=' '), Num(n=1)], keywords=[]))],
+                    decorator_list=[],
+                    returns=None),
+                FunctionDef(name='test_empty_format_specifier',
+                    args=arguments(args=[arg(arg='self', annotation=None)],
+                        vararg=None,
+                        kwonlyargs=[],
+                        kw_defaults=[],
+                        kwarg=None,
+                        defaults=[]),
+                    body=[Assign(targets=[Name(id='x')], value=Str(s='test')),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[FormattedValue(value=Name(id='x'), conversion=-1, format_spec=None)]),
+                                    Str(s='test')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[
+                                            FormattedValue(value=Name(id='x'),
+                                                conversion=-1,
+                                                format_spec=JoinedStr(values=[]))]),
+                                    Str(s='test')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[
+                                            FormattedValue(value=Name(id='x'),
+                                                conversion=115,
+                                                format_spec=JoinedStr(values=[]))]),
+                                    Str(s='test')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[
+                                            FormattedValue(value=Name(id='x'),
+                                                conversion=114,
+                                                format_spec=JoinedStr(values=[]))]),
+                                    Str(s="'test'")],
+                                keywords=[]))],
+                    decorator_list=[],
+                    returns=None),
+                FunctionDef(name='test_str_format_differences',
+                    args=arguments(args=[arg(arg='self', annotation=None)],
+                        vararg=None,
+                        kwonlyargs=[],
+                        kw_defaults=[],
+                        kwarg=None,
+                        defaults=[]),
+                    body=[
+                        Assign(targets=[Name(id='d')],
+                            value=Dict(keys=[Str(s='a'), Num(n=0)], values=[Str(s='string'), Str(s='integer')])),
+                        Assign(targets=[Name(id='a')], value=Num(n=0)),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[
+                                            FormattedValue(value=Subscript(value=Name(id='d'), slice=Index(value=Num(n=0))),
+                                                conversion=-1,
+                                                format_spec=None)]),
+                                    Str(s='integer')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[
+                                            FormattedValue(
+                                                value=Subscript(value=Name(id='d'), slice=Index(value=Str(s='a'))),
+                                                conversion=-1,
+                                                format_spec=None)]),
+                                    Str(s='string')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[
+                                            FormattedValue(
+                                                value=Subscript(value=Name(id='d'), slice=Index(value=Name(id='a'))),
+                                                conversion=-1,
+                                                format_spec=None)]),
+                                    Str(s='integer')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    Call(func=Attribute(value=Str(s='{d[a]}'), attr='format'),
+                                        args=[],
+                                        keywords=[keyword(arg='d', value=Name(id='d'))]),
+                                    Str(s='string')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    Call(func=Attribute(value=Str(s='{d[0]}'), attr='format'),
+                                        args=[],
+                                        keywords=[keyword(arg='d', value=Name(id='d'))]),
+                                    Str(s='integer')],
+                                keywords=[]))],
+                    decorator_list=[],
+                    returns=None),
+                FunctionDef(name='test_invalid_expressions',
+                    args=arguments(args=[arg(arg='self', annotation=None)],
+                        vararg=None,
+                        kwonlyargs=[],
+                        kw_defaults=[],
+                        kwarg=None,
+                        defaults=[]),
+                    body=[
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertAllRaise'),
+                                args=[Name(id='SyntaxError'),
+                                    Str(s='invalid syntax'),
+                                    List(elts=[Str(s="f'{a[4)}'"), Str(s="f'{a(4]}'")])],
+                                keywords=[]))],
+                    decorator_list=[],
+                    returns=None),
+                FunctionDef(name='test_errors',
+                    args=arguments(args=[arg(arg='self', annotation=None)],
+                        vararg=None,
+                        kwonlyargs=[],
+                        kw_defaults=[],
+                        kwarg=None,
+                        defaults=[]),
+                    body=[
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertAllRaise'),
+                                args=[Name(id='TypeError'),
+                                    Str(s='unsupported'),
+                                    List(elts=[Str(s="f'{(lambda: 0):x}'"), Str(s="f'{(0,):x}'")])],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertAllRaise'),
+                                args=[Name(id='ValueError'),
+                                    Str(s='Unknown format code'),
+                                    List(elts=[Str(s="f'{1000:j}'"), Str(s="f'{1000:j}'")])],
+                                keywords=[]))],
+                    decorator_list=[],
+                    returns=None),
+                FunctionDef(name='test_loop',
+                    args=arguments(args=[arg(arg='self', annotation=None)],
+                        vararg=None,
+                        kwonlyargs=[],
+                        kw_defaults=[],
+                        kwarg=None,
+                        defaults=[]),
+                    body=[
+                        For(target=Name(id='i'),
+                            iter=Call(func=Name(id='range'), args=[Num(n=1000)], keywords=[]),
+                            body=[
+                                Expr(
+                                    value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                        args=[
+                                            JoinedStr(
+                                                values=[Str(s='i:'),
+                                                    FormattedValue(value=Name(id='i'), conversion=-1, format_spec=None)]),
+                                            BinOp(left=Str(s='i:'),
+                                                op=Add,
+                                                right=Call(func=Name(id='str'), args=[Name(id='i')], keywords=[]))],
+                                        keywords=[]))],
+                            orelse=[])],
+                    decorator_list=[],
+                    returns=None),
+                FunctionDef(name='test_dict',
+                    args=arguments(args=[arg(arg='self', annotation=None)],
+                        vararg=None,
+                        kwonlyargs=[],
+                        kw_defaults=[],
+                        kwarg=None,
+                        defaults=[]),
+                    body=[
+                        Assign(targets=[Name(id='d')],
+                            value=Dict(keys=[Str(s='"'), Str(s="'"), Str(s='foo')],
+                                values=[Str(s='dquote'), Str(s='squote'), Str(s='bar')])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[
+                                            FormattedValue(
+                                                value=Subscript(value=Name(id='d'), slice=Index(value=Str(s="'"))),
+                                                conversion=-1,
+                                                format_spec=None)]),
+                                    Str(s='squote')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[
+                                            FormattedValue(
+                                                value=Subscript(value=Name(id='d'), slice=Index(value=Str(s='"'))),
+                                                conversion=-1,
+                                                format_spec=None)]),
+                                    Str(s='dquote')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[
+                                            FormattedValue(
+                                                value=Subscript(value=Name(id='d'), slice=Index(value=Str(s='foo'))),
+                                                conversion=-1,
+                                                format_spec=None)]),
+                                    Str(s='bar')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[
+                                    JoinedStr(
+                                        values=[
+                                            FormattedValue(
+                                                value=Subscript(value=Name(id='d'), slice=Index(value=Str(s='foo'))),
+                                                conversion=-1,
+                                                format_spec=None)]),
+                                    Str(s='bar')],
+                                keywords=[]))],
+                    decorator_list=[],
+                    returns=None),
+                FunctionDef(name='test_backslash_char',
+                    args=arguments(args=[arg(arg='self', annotation=None)],
+                        vararg=None,
+                        kwonlyargs=[],
+                        kw_defaults=[],
+                        kwarg=None,
+                        defaults=[]),
+                    body=[
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[Call(func=Name(id='eval'), args=[Str(s='f"\\\n"')], keywords=[]), Str(s='')],
+                                keywords=[])),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='self'), attr='assertEqual'),
+                                args=[Call(func=Name(id='eval'), args=[Str(s='f"\\\r"')], keywords=[]), Str(s='')],
+                                keywords=[]))],
+                    decorator_list=[],
+                    returns=None)],
+            decorator_list=[]),
+        If(
+            test=Compare(left=Name(id='__name__'), ops=[Eq], comparators=[Str(s='__main__')]),
+            body=[Expr(value=Call(func=Attribute(value=Name(id='unittest'), attr='main'), args=[], keywords=[]))],
+            orelse=[])])

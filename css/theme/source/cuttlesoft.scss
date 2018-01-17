@@ -69,8 +69,16 @@ section.has-light-background {
 
     // ------------------------------- BEM STYLES ------------------------------
     .ast {
+        font-size: 38px;
         &__header {
             top: -100px;
+        }
+    }
+
+    .tree {
+        font-size: 38px;
+        &__header {
+            top: -50px;
         }
     }
 

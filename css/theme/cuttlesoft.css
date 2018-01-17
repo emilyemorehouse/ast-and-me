@@ -14,8 +14,14 @@ section.has-light-background, section.has-light-background h1, section.has-light
     font-size: 30px; }
   .reveal .hidden {
     visibility: hidden; }
-  .reveal .ast__header {
-    top: -100px; }
+  .reveal .ast {
+    font-size: 38px; }
+    .reveal .ast__header {
+      top: -100px; }
+  .reveal .tree {
+    font-size: 38px; }
+    .reveal .tree__header {
+      top: -50px; }
   .reveal .bytecode__header {
     top: -146px; }
   .reveal .applications {

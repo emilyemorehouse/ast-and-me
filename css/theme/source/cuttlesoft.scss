@@ -8,7 +8,7 @@
 // ---------------------------------------------
 // Default mixins and settings -----------------
 @import "../template/mixins";
-@import "../template/settings";
+@import "../template/settings"; // also has mixins we need
 // Include theme-specific fonts ----------------
 @import url(../../lib/font/source-sans-pro/source-sans-pro.css);
 
@@ -31,7 +31,7 @@ $backgroundColor: #222;
 $mainColor: #fff;
 $headingColor: #fff;
 
-$mainFontSize: 42px;
+$mainFontSize: 50px;
 $mainFont: 'Source Sans Pro', Helvetica, sans-serif;
 $headingFont: 'Source Sans Pro', Helvetica, sans-serif;
 $headingTextShadow: none;
@@ -54,6 +54,8 @@ section.has-light-background {
 }
 
 .reveal {
+    font-size: $mainFontSize;
+
     // -------------------------------- HELPERS --------------------------------
     // Helper - top is set by BEM styles
     header {
@@ -71,9 +73,22 @@ section.has-light-background {
             top: -100px;
         }
     }
+
     .bytecode {
         &__header {
             top: -146px;
+        }
+    }
+
+    .applications {
+        &__header {
+            top: -25px;
+        }
+    }
+
+    .applicationsoutside {
+        &__header {
+            top: -50px;
         }
     }
 
@@ -87,9 +102,12 @@ section.has-light-background {
         height: 100%!important;
 
         &__code {
+            font-size: 42px;
             border: none;
             box-shadow: none;
-            max-height: 80%;
+            background: #252525;
+            max-height: 90%;
+            margin: 0;
         }
     }
 
@@ -103,6 +121,7 @@ section.has-light-background {
 
     .end {
         height: 100%!important;
+        font-size: 32px;
 
         &__gif {
             max-height: 40%;
@@ -111,7 +130,7 @@ section.has-light-background {
 
     .lifecycle {
         &__header {
-            top: -90px;
+            top: -50px;
         }
     }
 
@@ -176,12 +195,32 @@ section.has-light-background {
             max-height: 100%;
         }
 
+        &__tree--print,
+        &__tree--demo {
+            height: 55%;
+        }
+        &__dis--print,
+        &__dis--demo {
+            width: 65%;
+            max-width: 65%;
+            margin-left: 3%;
+        }
+
+
         &__code {
+            font-size: 42px;
             display: block;
 
             &--multi {
                 text-align: left;
                 margin-left: 5%;
+                font-size: 38px;
+            }
+             &--tinymulti {
+                text-align: left;
+                margin-left: auto;
+                margin-right: auto;
+                width: 275px;
             }
         }
     }

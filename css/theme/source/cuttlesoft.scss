@@ -183,6 +183,14 @@ section.has-light-background {
         }
     }
 
+    .resources {
+        font-size: 23px;
+
+        &__header {
+            top: -25px;
+        }
+    }
+
     .snippet {
         height: 100%!important;
 

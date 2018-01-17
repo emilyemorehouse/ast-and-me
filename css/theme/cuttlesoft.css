@@ -71,6 +71,10 @@ section.has-light-background, section.has-light-background h1, section.has-light
     top: -117px; }
   .reveal .overview__header {
     top: -149px; }
+  .reveal .resources {
+    font-size: 23px; }
+    .reveal .resources__header {
+      top: -25px; }
   .reveal .snippet {
     height: 100% !important; }
     .reveal .snippet__dis, .reveal .snippet__tree {

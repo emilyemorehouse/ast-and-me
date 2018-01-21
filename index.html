@@ -149,95 +149,199 @@
                         Compiling is generating the code objects, including the bytecode. Interpreting is making sense of the bytecode in order to actually make things happen. One of the ways in which Python is “dynamic” is that the same bytecode doesn’t always have the same effect.
                     </aside>
                 </section>
+
             <!-- 3B -  LIFECYCLE -->
                 <section class="lifecycle">
                     <h2>Life Cycle of a Piece of Python Code</h2>
                 </section>
 
-                <section class="lifecycle" data-transition="fade">
-                    <header class="lifecycle__header">Life Cycle of a Piece of Python Code</header>
-                    <ul>
-                        <li>Parse source code into a parse tree (AKA CST)</li>
-                        <li class="hidden">Transform parse tree into an Abstract Syntax Tree</li>
-                        <li class="hidden">Transform AST into a Control Flow Graph</li>
-                        <li class="hidden">Emit bytecode based on the Control Flow Graph</li>
-                        <li class="hidden">Interpret the bytecode</li>
-                    </ul>
-                    <aside class="notes">
-                        CSTs - Concrete Syntax Trees (a.k.a. Parse Trees) and ASTs - Abstract Syntax Trees (a.k.a. Syntax Trees)
-
-                        CST - a one-to-one mapping from the grammar to a tree-form.
-                        AST - does not show syntax, instead shows the underlying objects in a structured way
-                    </aside>
-                </section>
-
-                <section class="lifecycle" data-transition="fade">
-                    <header class="lifecycle__header">Life Cycle of a Piece of Python Code</header>
-                    <ul>
-                        <li>Parse source code into a parse tree (AKA CST)</li>
-                        <li>Transform parse tree into an Abstract Syntax Tree</li>
-                        <li class="hidden">Transform AST into a Control Flow Graph</li>
-                        <li class="hidden">Emit bytecode based on the Control Flow Graph</li>
-                        <li class="hidden">Interpret the bytecode</li>
-                    </ul>
-                    <aside class="notes">
-                        CSTs - Concrete Syntax Trees (a.k.a. Parse Trees) and ASTs - Abstract Syntax Trees (a.k.a. Syntax Trees)
-
-                        CST - a one-to-one mapping from the grammar to a tree-form.
-                        AST - does not show syntax, instead shows the underlying objects in a structured way
-                    </aside>
-                </section>
-
-                <section class="lifecycle" data-transition="fade">
+                <section class="lifecycle" data-transition="none">
                     <header class="lifecycle__header">Life cycle of a Piece of Python Code</header>
-                    <ul>
-                        <li>Parse source code into a parse tree (AKA CST)</li>
-                        <li>Transform parse tree into an Abstract Syntax Tree</li>
-                        <li>Transform AST into a Control Flow Graph</li>
-                        <li class="hidden">Emit bytecode based on the Control Flow Graph</li>
-                        <li class="hidden">Interpret the bytecode</li>
-                    </ul>
+                    <img class="lifecycle__image" data-src="img/lifecycle/lifecycle-1.png">
                     <aside class="notes">
+                        <ul>
+                            <li>Parse source code into a parse tree</li>
+                            <li>Transform parse tree into an Abstract Syntax Tree</li>
+                            <li>Transform AST into a Control Flow Graph</li>
+                            <li>Emit bytecode based on the Control Flow Graph</li>
+                            <li>Interpret the bytecode</li>
+                        </ul>
                         CSTs - Concrete Syntax Trees (a.k.a. Parse Trees) and ASTs - Abstract Syntax Trees (a.k.a. Syntax Trees)
-
                         CST - a one-to-one mapping from the grammar to a tree-form.
                         AST - does not show syntax, instead shows the underlying objects in a structured way
                     </aside>
                 </section>
 
-                <section class="lifecycle" data-transition="fade">
+                <section class="lifecycle" data-transition="none">
                     <header class="lifecycle__header">Life cycle of a Piece of Python Code</header>
-                    <ul>
-                        <li>Parse source code into a parse tree (AKA CST)</li>
-                        <li>Transform parse tree into an Abstract Syntax Tree</li>
-                        <li>Transform AST into a Control Flow Graph</li>
-                        <li>Emit bytecode based on the Control Flow Graph</li>
-                        <li class="hidden">Interpret the bytecode</li>
-                    </ul>
+                    <img class="lifecycle__image" data-src="img/lifecycle/lifecycle-2.png">
                     <aside class="notes">
+                        <ul>
+                            <li>Parse source code into a parse tree</li>
+                            <li>Transform parse tree into an Abstract Syntax Tree</li>
+                            <li>Transform AST into a Control Flow Graph</li>
+                            <li>Emit bytecode based on the Control Flow Graph</li>
+                            <li>Interpret the bytecode</li>
+                        </ul>
                         CSTs - Concrete Syntax Trees (a.k.a. Parse Trees) and ASTs - Abstract Syntax Trees (a.k.a. Syntax Trees)
-
                         CST - a one-to-one mapping from the grammar to a tree-form.
                         AST - does not show syntax, instead shows the underlying objects in a structured way
                     </aside>
                 </section>
 
-                <section class="lifecycle" data-transition="fade">
+                <section class="lifecycle" data-transition="none">
                     <header class="lifecycle__header">Life cycle of a Piece of Python Code</header>
-                    <ul>
-                        <li>Parse source code into a parse tree (AKA CST)</li>
-                        <li>Transform parse tree into an Abstract Syntax Tree</li>
-                        <li>Transform AST into a Control Flow Graph</li>
-                        <li>Emit bytecode based on the Control Flow Graph</li>
-                        <li>Interpret the bytecode</li>
-                    </ul>
+                    <img class="lifecycle__image" data-src="img/lifecycle/lifecycle-3.png">
                     <aside class="notes">
+                        <ul>
+                            <li>Parse source code into a parse tree</li>
+                            <li>Transform parse tree into an Abstract Syntax Tree</li>
+                            <li>Transform AST into a Control Flow Graph</li>
+                            <li>Emit bytecode based on the Control Flow Graph</li>
+                            <li>Interpret the bytecode</li>
+                        </ul>
                         CSTs - Concrete Syntax Trees (a.k.a. Parse Trees) and ASTs - Abstract Syntax Trees (a.k.a. Syntax Trees)
-
                         CST - a one-to-one mapping from the grammar to a tree-form.
                         AST - does not show syntax, instead shows the underlying objects in a structured way
                     </aside>
                 </section>
+
+                <section class="lifecycle" data-transition="none">
+                    <header class="lifecycle__header">Life cycle of a Piece of Python Code</header>
+                    <img class="lifecycle__image" data-src="img/lifecycle/lifecycle-4.png">
+                    <aside class="notes">
+                        <ul>
+                            <li>Parse source code into a parse tree</li>
+                            <li>Transform parse tree into an Abstract Syntax Tree</li>
+                            <li>Transform AST into a Control Flow Graph</li>
+                            <li>Emit bytecode based on the Control Flow Graph</li>
+                            <li>Interpret the bytecode</li>
+                        </ul>
+                        CSTs - Concrete Syntax Trees (a.k.a. Parse Trees) and ASTs - Abstract Syntax Trees (a.k.a. Syntax Trees)
+                        CST - a one-to-one mapping from the grammar to a tree-form.
+                        AST - does not show syntax, instead shows the underlying objects in a structured way
+                    </aside>
+                </section>
+
+                <section class="lifecycle" data-transition="none">
+                    <header class="lifecycle__header">Life cycle of a Piece of Python Code</header>
+                    <img class="lifecycle__image" data-src="img/lifecycle/lifecycle-5.png">
+                    <aside class="notes">
+                        <ul>
+                            <li>Parse source code into a parse tree</li>
+                            <li>Transform parse tree into an Abstract Syntax Tree</li>
+                            <li>Transform AST into a Control Flow Graph</li>
+                            <li>Emit bytecode based on the Control Flow Graph</li>
+                            <li>Interpret the bytecode</li>
+                        </ul>
+                        CSTs - Concrete Syntax Trees (a.k.a. Parse Trees) and ASTs - Abstract Syntax Trees (a.k.a. Syntax Trees)
+                        CST - a one-to-one mapping from the grammar to a tree-form.
+                        AST - does not show syntax, instead shows the underlying objects in a structured way
+                    </aside>
+                </section>
+
+                <section class="lifecycle" data-transition="none">
+                    <header class="lifecycle__header">Life cycle of a Piece of Python Code</header>
+                    <img class="lifecycle__image" data-src="img/lifecycle/lifecycle-6.png">
+                    <aside class="notes">
+                        <ul>
+                            <li>Parse source code into a parse tree</li>
+                            <li>Transform parse tree into an Abstract Syntax Tree</li>
+                            <li>Transform AST into a Control Flow Graph</li>
+                            <li>Emit bytecode based on the Control Flow Graph</li>
+                            <li>Interpret the bytecode</li>
+                        </ul>
+                        CSTs - Concrete Syntax Trees (a.k.a. Parse Trees) and ASTs - Abstract Syntax Trees (a.k.a. Syntax Trees)
+                        CST - a one-to-one mapping from the grammar to a tree-form.
+                        AST - does not show syntax, instead shows the underlying objects in a structured way
+                    </aside>
+                </section>
+
+                <section class="lifecycle" data-transition="none">
+                    <header class="lifecycle__header">Life cycle of a Piece of Python Code</header>
+                    <img class="lifecycle__image" data-src="img/lifecycle/lifecycle-7.png">
+                    <aside class="notes">
+                        <ul>
+                            <li>Parse source code into a parse tree</li>
+                            <li>Transform parse tree into an Abstract Syntax Tree</li>
+                            <li>Transform AST into a Control Flow Graph</li>
+                            <li>Emit bytecode based on the Control Flow Graph</li>
+                            <li>Interpret the bytecode</li>
+                        </ul>
+                        CSTs - Concrete Syntax Trees (a.k.a. Parse Trees) and ASTs - Abstract Syntax Trees (a.k.a. Syntax Trees)
+                        CST - a one-to-one mapping from the grammar to a tree-form.
+                        AST - does not show syntax, instead shows the underlying objects in a structured way
+                    </aside>
+                </section>
+
+                <section class="lifecycle" data-transition="none">
+                    <header class="lifecycle__header">Life cycle of a Piece of Python Code</header>
+                    <img class="lifecycle__image" data-src="img/lifecycle/lifecycle-8.png">
+                    <aside class="notes">
+                        <ul>
+                            <li>Parse source code into a parse tree</li>
+                            <li>Transform parse tree into an Abstract Syntax Tree</li>
+                            <li>Transform AST into a Control Flow Graph</li>
+                            <li>Emit bytecode based on the Control Flow Graph</li>
+                            <li>Interpret the bytecode</li>
+                        </ul>
+                        CSTs - Concrete Syntax Trees (a.k.a. Parse Trees) and ASTs - Abstract Syntax Trees (a.k.a. Syntax Trees)
+                        CST - a one-to-one mapping from the grammar to a tree-form.
+                        AST - does not show syntax, instead shows the underlying objects in a structured way
+                    </aside>
+                </section>
+
+                <section class="lifecycle" data-transition="none">
+                    <header class="lifecycle__header">Life cycle of a Piece of Python Code</header>
+                    <img class="lifecycle__image" data-src="img/lifecycle/lifecycle-9.png">
+                    <aside class="notes">
+                        <ul>
+                            <li>Parse source code into a parse tree</li>
+                            <li>Transform parse tree into an Abstract Syntax Tree</li>
+                            <li>Transform AST into a Control Flow Graph</li>
+                            <li>Emit bytecode based on the Control Flow Graph</li>
+                            <li>Interpret the bytecode</li>
+                        </ul>
+                        CSTs - Concrete Syntax Trees (a.k.a. Parse Trees) and ASTs - Abstract Syntax Trees (a.k.a. Syntax Trees)
+                        CST - a one-to-one mapping from the grammar to a tree-form.
+                        AST - does not show syntax, instead shows the underlying objects in a structured way
+                    </aside>
+                </section>
+
+                <section class="lifecycle" data-transition="none">
+                    <header class="lifecycle__header">Life cycle of a Piece of Python Code</header>
+                    <img class="lifecycle__image" data-src="img/lifecycle/lifecycle-10.png">
+                    <aside class="notes">
+                        <ul>
+                            <li>Parse source code into a parse tree</li>
+                            <li>Transform parse tree into an Abstract Syntax Tree</li>
+                            <li>Transform AST into a Control Flow Graph</li>
+                            <li>Emit bytecode based on the Control Flow Graph</li>
+                            <li>Interpret the bytecode</li>
+                        </ul>
+                        CSTs - Concrete Syntax Trees (a.k.a. Parse Trees) and ASTs - Abstract Syntax Trees (a.k.a. Syntax Trees)
+                        CST - a one-to-one mapping from the grammar to a tree-form.
+                        AST - does not show syntax, instead shows the underlying objects in a structured way
+                    </aside>
+                </section>
+
+                <section class="lifecycle" data-transition="none">
+                    <header class="lifecycle__header">Life cycle of a Piece of Python Code</header>
+                    <img class="lifecycle__image" data-src="img/lifecycle/lifecycle-11.png">
+                    <aside class="notes">
+                        <ul>
+                            <li>Parse source code into a parse tree</li>
+                            <li>Transform parse tree into an Abstract Syntax Tree</li>
+                            <li>Transform AST into a Control Flow Graph</li>
+                            <li>Emit bytecode based on the Control Flow Graph</li>
+                            <li>Interpret the bytecode</li>
+                        </ul>
+                        CSTs - Concrete Syntax Trees (a.k.a. Parse Trees) and ASTs - Abstract Syntax Trees (a.k.a. Syntax Trees)
+                        CST - a one-to-one mapping from the grammar to a tree-form.
+                        AST - does not show syntax, instead shows the underlying objects in a structured way
+                    </aside>
+                </section>
+
             <!-- 3C -  WHAT IS AN AST? -->
                 <section class="ast">
                     <h2>What is an Abstract Syntax Tree?</h2>

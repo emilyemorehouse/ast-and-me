@@ -177,14 +177,19 @@ section.has-light-background {
         &__header {
             top: -50px;
         }
+
+        &__image {
+            border: none;
+            box-shadow: none;
+        }
     }
 
     .intro {
         &__image {
-            width:200px;
-           position: absolute;
-           left: 40px;
-           border-radius: 50%;
+            width: 200px;
+            position: absolute;
+            left: 40px;
+            border-radius: 50%;
         }
 
         &__ul {

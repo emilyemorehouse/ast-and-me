@@ -78,7 +78,17 @@ section.has-light-background {
     .tree {
         font-size: 38px;
         &__header {
-            top: -50px;
+            top: -87px;
+
+            &--walkthru {
+                top: -20px;
+            }
+        }
+
+        &__walkthru {
+            border: none;
+            box-shadow: none;
+            max-width: 90%;
         }
 
         &__tree {

@@ -32,6 +32,18 @@ section.has-light-background, section.has-light-background h1, section.has-light
     top: -50px; }
   .reveal .demo__header {
     top: -142px; }
+  .reveal .astprimer__header {
+    top: 0px; }
+  .reveal .astprimer__tree {
+    border: none;
+    box-shadow: none;
+    max-width: 46%;
+    vertical-align: middle;
+    max-height: 100%; }
+    .reveal .astprimer__tree--left {
+      margin: 50px 20px 30px 0; }
+    .reveal .astprimer__tree--right {
+      margin: 50px 0 30px 20px; }
   .reveal .ast-demo {
     height: 100% !important; }
     .reveal .ast-demo__code {

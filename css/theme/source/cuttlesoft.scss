@@ -80,6 +80,21 @@ section.has-light-background {
         &__header {
             top: -50px;
         }
+
+        &__tree {
+            border: none;
+            box-shadow: none;
+            max-width: 46%;
+            vertical-align: middle;
+            max-height: 100%;
+
+            &--left {
+                margin: 50px 20px 30px 0;
+            }
+            &--right {
+                margin: 50px 0 30px 20px;
+            }
+        }
     }
 
     .bytecode {

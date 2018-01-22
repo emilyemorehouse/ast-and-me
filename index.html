@@ -192,7 +192,7 @@
                     <h2>From Source Code To Execution:</h2>
                     <aside class="notes">
                         <ul>
-                            <li>We'll start with our journey from source code to exection</li>
+                            <li>We'll start with our journey from source code to execution</li>
                             <li>To build an understanding of the broad steps it takes to compile a piece of Python code</li>
                         </ul>
                     </aside>
@@ -502,7 +502,7 @@
                     <code class="snippet__code">1 + 2 * 3</code>
                     <aside class="notes">
                         Here we have an AST for the same piece of code.
-                        We leave behind syntactial specifics so we can instead focus on how underlying objects are structured
+                        We leave behind syntactical specifics so we can instead focus on how underlying objects are structured
                     </aside>
                 </section>
             <!-- 4 - AST AND DIS MODULES - PART 1 -->
@@ -584,42 +584,80 @@
 
                 <section class="demo ast-demo" data-transition="none">
                     <img class="ast-demo__code" data-src="img/demo/1 - source.png" />
+                    <aside class="notes">
+                        We'll start with a very simple piece of Python code - a print statement
+                        that takes a string as its argument.
+                        <br><br>
+                        We can then generate its AST...
+                    </aside>
                 </section>
 
                 <section class="demo ast-demo" data-transition="none">
                     <img class="ast-demo__code" data-src="img/demo/2 - node.png" />
+                    <aside class="notes">
+                        ...using `ast.parse`. We specify the source, as well as the mode that we want to process our code in.
+                    </aside>
                 </section>
 
                 <section class="demo ast-demo" data-transition="none">
                     <img class="ast-demo__code" data-src="img/demo/2b - node.png" />
+                    <aside class="notes">
+                        So now we have a tree generated from our code, stored as an _ast.Expression.
+                    </aside>
                 </section>
 
                 <section class="demo ast-demo" data-transition="none">
                     <img class="ast-demo__code" data-src="img/demo/2c - node dump.png" />
+                    <aside class="notes">
+                        So what does this look like? Well, we can dump the AST, but it doesn't give us anything that's extremely legible right off the bat,
+                        <br><br>
+                        but if we look closely, we see that we have a function called "print" that is being passed a string.
+                    </aside>
                 </section>
 
                 <section class="demo ast-demo" data-transition="none">
                     <img class="ast-demo__code" data-src="img/demo/3 - compile.png" />
+                    <aside class="notes">
+                        We'll push forward. We can now take this AST and compile it into bytecode by calling `compile`.
+                    </aside>
                 </section>
 
                 <section class="demo ast-demo" data-transition="none">
                     <img class="ast-demo__code" data-src="img/demo/3b - type compiled.png" />
+                    <aside class="notes">
+                        Awesome! We now have a code object.
+                    </aside>
                 </section>
 
                 <section class="demo ast-demo" data-transition="none">
                     <img class="ast-demo__code" data-src="img/demo/4 - bytecode.png" />
+                    <aside class="notes">
+                        We can peek inside the code object to see a bunch of different things, but most importantly, we can see our raw bytecode...
+                    </aside>
                 </section>
 
                 <section class="demo ast-demo" data-transition="none">
                     <img class="ast-demo__code" data-src="img/demo/5 - eval.png" />
+                    <aside class="notes">
+                        ... which we can now run using `eval`.
+                    </aside>
                 </section>
 
                 <section class="demo ast-demo" data-transition="none">
                     <img class="ast-demo__code" data-src="img/demo/6 - pretty bytecode.png" />
+                    <aside class="notes">
+                        Let's take a closer look at that bytecode though, because it wasn't very readable when we first saw it. We can force the interpreter to show us bytecode that's more legible to humans.
+                        <br><br>Somewhere along the lines, our compiler makes sense of these bytes, but it would take a lot of time for us to go through the giant switch statement that handles opcodes to figure it our ourselves.
+                    </aside>
                 </section>
 
                 <section class="demo ast-demo" data-transition="none">
                     <img class="ast-demo__code" data-src="img/demo/7 - dis better.png" />
+                    <aside class="notes">
+                        We can use Python's disassembler to help us out. We can now see a clear depiction of what is going on -
+                        <br><br>
+                        But... what does all of this look like in tree form?
+                    </aside>
                 </section>
 
                 <section class="demo snippet" data-transition="none">
@@ -632,7 +670,7 @@
                         This is pretty readable at this point! We can see that there's a single statement
                         so we don't need any nesting.
                         We'll call LOAD_NAME for our print function, LOAD_CONST for our string that we
-                        passed in, and then simple execute and retun.
+                        passed in, and then simple execute and return.
                         <br><br>
                         Simple enough?
                     </aside>
@@ -688,7 +726,7 @@
                         <li class="hidden">Few AST optimizations besides constant folding</li>
                     </ul>
                     <aside class="notes">
-                        The best way to optimize Python is to replace the implementation for another iterpreter,
+                        The best way to optimize Python is to replace the implementation for another interpreter,
                         like PyPy, Jython, Cython, IronPython, Stackless Python, even MicroPython
                     </aside>
                 </section>

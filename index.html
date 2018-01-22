@@ -58,26 +58,92 @@
                             <a href="https://github.com/emilyemorehouse" target="_blank">emilyemorehouse</a>
                         </li>
                     </ul>
+                    <aside class="notes">
+                        Don't worry, we're going to start with the easy part!
+
+                        I'm Emily Morehouse, the director of engineering at Cuttlesoft.
+                        I'm from Denver by way of Florida.
+                    </aside>
                 </section>
 
                 <section>
                     <h4>We're going to cover:</h4>
                     <ul>
                         <li>Life cycle of a piece of Python code</li>
-                        <li>Inspecting Python code at various stages</li>
-                        <li>Current Python optimizations</li>
-                        <li>Practical applications</li>
+                        <li class="hidden">Interacting at various stages</li>
+                        <li class="hidden">Current Python optimizations</li>
+                        <li class="hidden">Practical applications</li>
                     </ul>
+                    <aside class="notes">
+                        What we're going to cover in this talk:
+                        <ul>
+                            <li>10,000 foot tour of how we get from source code to execution of a piece of Python code</li>
+                        </ul>
+                    </aside>
                 </section>
 
                 <section>
+                    <h4>We're going to cover:</h4>
+                    <ul>
+                        <li>Life cycle of a piece of Python code</li>
+                        <li>Interacting at various stages</li>
+                        <li class="hidden">Current Python optimizations</li>
+                        <li class="hidden">Practical applications</li>
+                    </ul>
+                    <aside class="notes">
+                        What we're going to cover in this talk:
+                        <ul>
+                            <li>10,000 foot tour of how we get from source code to execution of a piece of Python code</li>
+                            <li>How to interact and inspect each step of that process</li>
+                        </ul>
+                    </aside>
+                </section>
+
+                <section>
+                    <h4>We're going to cover:</h4>
+                    <ul>
+                        <li>Life cycle of a piece of Python code</li>
+                        <li>Interacting at various stages</li>
+                        <li>Current Python optimizations</li>
+                        <li class="hidden">Practical applications</li>
+                    </ul>
+                    <aside class="notes">
+                        What we're going to cover in this talk:
+                        <ul>
+                            <li>10,000 foot tour of how we get from source code to execution of a piece of Python code</li>
+                            <li>How to interact and inspect each step of that process</li>
+                            <li>Current Python optimizations in the compilation process</li>
+                        </ul>
+                    </aside>
+                </section>
+
+                <section>
+                    <h4>We're going to cover:</h4>
+                    <ul>
+                        <li>Life cycle of a piece of Python code</li>
+                        <li>Interacting at various stages</li>
+                        <li>Current Python optimizations</li>
+                        <li>Practical applications</li>
+                    </ul>
+                    <aside class="notes">
+                        What we're going to cover in this talk:
+                        <ul>
+                            <li>10,000 foot tour of how we get from source code to execution of a piece of Python code</li>
+                            <li>How to interact and inspect each step of that process</li>
+                            <li>Current Python optimizations in the compilation process</li>
+                            <li>Practical applications of using ASTS both in and outside of the Python world.</li>
+                        </ul>
+                    </aside>
+                </section>
+
+                <!-- <section>
                     <h4>What you should get out of this talk:</h4>
                     <ul>
                         <li>An understanding of how Python works.*</li>
                         <li>Knowledge of how to interact with Python's AST and bytecode</li>
                         <li>Taste of what you can do</li>
                     </ul>
-                </section>
+                </section> -->
 
                 <!-- I don't know how I feel about this slide, so I'm hiding it for now. -->
                 <!-- <section>
@@ -95,8 +161,7 @@
                     <img class="why__gif why__gif--hidden" data-src="img/gifs/sunny2.gif" loop="infinite" />
 
                     <aside class="notes">
-                        * Why should you care about Python internals? (2 minutes)
-                            - Why a bit of knowledge about Python internals goes a long way - from code speedups to understanding tracebacks
+                        Should you care about Python internals?
                     </aside>
                 </section>
 
@@ -106,9 +171,8 @@
                     <img class="why__gif" data-src="img/gifs/sunny2.gif" loop="infinite" />
 
                     <aside class="notes">
-                        * Why should you care about Python internals? (2 minutes)
-                            - Why a bit of knowledge about Python internals goes a long way - from code speedups to understanding tracebacks
-
+                        Yes, yes you should.
+                        <br><br>
                         ** DRINK SOME WATER! 🚰 **
                     </aside>
                 </section>
@@ -119,14 +183,17 @@
                 -->
                 <section class="overview" data-background="img/overview/car.jpg">
                     <h2>A Peek Under The Hood</h2>
+                    <aside class="notes">
+                        Let's take a peek under Python's hood.
+                    </aside>
                 </section>
 
                 <section class="overview">
                     <h2>From Source Code To Execution:</h2>
                     <aside class="notes">
                         <ul>
-                            <li>A brief overview of compiling a piece of Python code - from source code through bytecode and execution, focusing on the role of the AST. 5,000-foot overview. (3 minutes)
-                            <li>Build an understanding of the broad steps it takes to compile a piece of Python code</li>
+                            <li>We'll start with our journey from source code to exection</li>
+                            <li>To build an understanding of the broad steps it takes to compile a piece of Python code</li>
                         </ul>
                     </aside>
                 </section>
@@ -139,9 +206,6 @@
                 <section class="overview" data-transition="none">
                     <header class="overview__header">From Source Code To Execution:</header>
                     <h3>A: Both!<h3>
-                    <aside class="notes">
-                        Compiling is generating the code objects, including the bytecode. Interpreting is making sense of the bytecode in order to actually make things happen. One of the ways in which Python is “dynamic” is that the same bytecode doesn’t always have the same effect.
-                    </aside>
                 </section>
 
                 <section class="overview" data-transition="none">
@@ -149,7 +213,9 @@
                     <h4 class="hidden">Interpreter → Executes Bytecode</h4>
 
                     <aside class="notes">
-                        Compiling is generating the code objects, including the bytecode. Interpreting is making sense of the bytecode in order to actually make things happen. One of the ways in which Python is “dynamic” is that the same bytecode doesn’t always have the same effect.
+                        <ul>
+                            <li>Compiler generates bytecode</li>
+                        </ul>
                     </aside>
                 </section>
 
@@ -158,28 +224,26 @@
                     <h4>Interpreter → Executes Bytecode</h4>
 
                     <aside class="notes">
-                        Compiling is generating the code objects, including the bytecode. Interpreting is making sense of the bytecode in order to actually make things happen. One of the ways in which Python is “dynamic” is that the same bytecode doesn’t always have the same effect.
+                        <ul>
+                            <li>Compiler generates bytecode</li>
+                            <li>Interpreter makes sense of the bytecode in order to execute your code</li>
+                            <li>One of the ways in which Python is “dynamic” is that the same bytecode doesn’t always have the same effect.</li>
+                        </ul>
                     </aside>
                 </section>
             <!-- 3B -  LIFECYCLE -->
                 <section class="lifecycle">
                     <h2>Life Cycle of a Piece of Python Code</h2>
+                    <aside class="notes">
+                        Let's zoom in a bit to see more of this process.
+                    </aside>
                 </section>
 
                 <section class="lifecycle" data-transition="none">
                     <header class="lifecycle__header">Life cycle of a Piece of Python Code</header>
                     <img class="lifecycle__image" data-src="img/lifecycle/lifecycle-1.png">
                     <aside class="notes">
-                        <ul>
-                            <li>Parse source code into a parse tree</li>
-                            <li>Transform parse tree into an Abstract Syntax Tree</li>
-                            <li>Transform AST into a Control Flow Graph</li>
-                            <li>Emit bytecode based on the Control Flow Graph</li>
-                            <li>Interpret the bytecode</li>
-                        </ul>
-                        CSTs - Concrete Syntax Trees (a.k.a. Parse Trees) and ASTs - Abstract Syntax Trees (a.k.a. Syntax Trees)
-                        CST - a one-to-one mapping from the grammar to a tree-form.
-                        AST - does not show syntax, instead shows the underlying objects in a structured way
+                        Start with source code.
                     </aside>
                 </section>
 
@@ -188,15 +252,8 @@
                     <img class="lifecycle__image" data-src="img/lifecycle/lifecycle-2.png">
                     <aside class="notes">
                         <ul>
-                            <li>Parse source code into a parse tree</li>
-                            <li>Transform parse tree into an Abstract Syntax Tree</li>
-                            <li>Transform AST into a Control Flow Graph</li>
-                            <li>Emit bytecode based on the Control Flow Graph</li>
-                            <li>Interpret the bytecode</li>
+                            Parse source code...
                         </ul>
-                        CSTs - Concrete Syntax Trees (a.k.a. Parse Trees) and ASTs - Abstract Syntax Trees (a.k.a. Syntax Trees)
-                        CST - a one-to-one mapping from the grammar to a tree-form.
-                        AST - does not show syntax, instead shows the underlying objects in a structured way
                     </aside>
                 </section>
 
@@ -205,15 +262,9 @@
                     <img class="lifecycle__image" data-src="img/lifecycle/lifecycle-3.png">
                     <aside class="notes">
                         <ul>
-                            <li>Parse source code into a parse tree</li>
-                            <li>Transform parse tree into an Abstract Syntax Tree</li>
-                            <li>Transform AST into a Control Flow Graph</li>
-                            <li>Emit bytecode based on the Control Flow Graph</li>
-                            <li>Interpret the bytecode</li>
-                        </ul>
-                        CSTs - Concrete Syntax Trees (a.k.a. Parse Trees) and ASTs - Abstract Syntax Trees (a.k.a. Syntax Trees)
-                        CST - a one-to-one mapping from the grammar to a tree-form.
-                        AST - does not show syntax, instead shows the underlying objects in a structured way
+                            ...into a parse tree.
+                            <br><br>
+                            Parse trees are a bit more detailed than we want, you'll see a digram in a moment.
                     </aside>
                 </section>
 
@@ -221,16 +272,7 @@
                     <header class="lifecycle__header">Life cycle of a Piece of Python Code</header>
                     <img class="lifecycle__image" data-src="img/lifecycle/lifecycle-4.png">
                     <aside class="notes">
-                        <ul>
-                            <li>Parse source code into a parse tree</li>
-                            <li>Transform parse tree into an Abstract Syntax Tree</li>
-                            <li>Transform AST into a Control Flow Graph</li>
-                            <li>Emit bytecode based on the Control Flow Graph</li>
-                            <li>Interpret the bytecode</li>
-                        </ul>
-                        CSTs - Concrete Syntax Trees (a.k.a. Parse Trees) and ASTs - Abstract Syntax Trees (a.k.a. Syntax Trees)
-                        CST - a one-to-one mapping from the grammar to a tree-form.
-                        AST - does not show syntax, instead shows the underlying objects in a structured way
+                        So we transform our parse tree...
                     </aside>
                 </section>
 
@@ -238,16 +280,7 @@
                     <header class="lifecycle__header">Life cycle of a Piece of Python Code</header>
                     <img class="lifecycle__image" data-src="img/lifecycle/lifecycle-5.png">
                     <aside class="notes">
-                        <ul>
-                            <li>Parse source code into a parse tree</li>
-                            <li>Transform parse tree into an Abstract Syntax Tree</li>
-                            <li>Transform AST into a Control Flow Graph</li>
-                            <li>Emit bytecode based on the Control Flow Graph</li>
-                            <li>Interpret the bytecode</li>
-                        </ul>
-                        CSTs - Concrete Syntax Trees (a.k.a. Parse Trees) and ASTs - Abstract Syntax Trees (a.k.a. Syntax Trees)
-                        CST - a one-to-one mapping from the grammar to a tree-form.
-                        AST - does not show syntax, instead shows the underlying objects in a structured way
+                        ...into an Abstract syntax tree.
                     </aside>
                 </section>
 
@@ -255,16 +288,7 @@
                     <header class="lifecycle__header">Life cycle of a Piece of Python Code</header>
                     <img class="lifecycle__image" data-src="img/lifecycle/lifecycle-6.png">
                     <aside class="notes">
-                        <ul>
-                            <li>Parse source code into a parse tree</li>
-                            <li>Transform parse tree into an Abstract Syntax Tree</li>
-                            <li>Transform AST into a Control Flow Graph</li>
-                            <li>Emit bytecode based on the Control Flow Graph</li>
-                            <li>Interpret the bytecode</li>
-                        </ul>
-                        CSTs - Concrete Syntax Trees (a.k.a. Parse Trees) and ASTs - Abstract Syntax Trees (a.k.a. Syntax Trees)
-                        CST - a one-to-one mapping from the grammar to a tree-form.
-                        AST - does not show syntax, instead shows the underlying objects in a structured way
+                        Another transformation into...
                     </aside>
                 </section>
 
@@ -272,16 +296,7 @@
                     <header class="lifecycle__header">Life cycle of a Piece of Python Code</header>
                     <img class="lifecycle__image" data-src="img/lifecycle/lifecycle-7.png">
                     <aside class="notes">
-                        <ul>
-                            <li>Parse source code into a parse tree</li>
-                            <li>Transform parse tree into an Abstract Syntax Tree</li>
-                            <li>Transform AST into a Control Flow Graph</li>
-                            <li>Emit bytecode based on the Control Flow Graph</li>
-                            <li>Interpret the bytecode</li>
-                        </ul>
-                        CSTs - Concrete Syntax Trees (a.k.a. Parse Trees) and ASTs - Abstract Syntax Trees (a.k.a. Syntax Trees)
-                        CST - a one-to-one mapping from the grammar to a tree-form.
-                        AST - does not show syntax, instead shows the underlying objects in a structured way
+                        ... a control flow graph, or CFG, which is a directed graph that models the flow of a program
                     </aside>
                 </section>
 
@@ -289,16 +304,7 @@
                     <header class="lifecycle__header">Life cycle of a Piece of Python Code</header>
                     <img class="lifecycle__image" data-src="img/lifecycle/lifecycle-8.png">
                     <aside class="notes">
-                        <ul>
-                            <li>Parse source code into a parse tree</li>
-                            <li>Transform parse tree into an Abstract Syntax Tree</li>
-                            <li>Transform AST into a Control Flow Graph</li>
-                            <li>Emit bytecode based on the Control Flow Graph</li>
-                            <li>Interpret the bytecode</li>
-                        </ul>
-                        CSTs - Concrete Syntax Trees (a.k.a. Parse Trees) and ASTs - Abstract Syntax Trees (a.k.a. Syntax Trees)
-                        CST - a one-to-one mapping from the grammar to a tree-form.
-                        AST - does not show syntax, instead shows the underlying objects in a structured way
+                        From here, we can now emit...
                     </aside>
                 </section>
 
@@ -306,16 +312,7 @@
                     <header class="lifecycle__header">Life cycle of a Piece of Python Code</header>
                     <img class="lifecycle__image" data-src="img/lifecycle/lifecycle-9.png">
                     <aside class="notes">
-                        <ul>
-                            <li>Parse source code into a parse tree</li>
-                            <li>Transform parse tree into an Abstract Syntax Tree</li>
-                            <li>Transform AST into a Control Flow Graph</li>
-                            <li>Emit bytecode based on the Control Flow Graph</li>
-                            <li>Interpret the bytecode</li>
-                        </ul>
-                        CSTs - Concrete Syntax Trees (a.k.a. Parse Trees) and ASTs - Abstract Syntax Trees (a.k.a. Syntax Trees)
-                        CST - a one-to-one mapping from the grammar to a tree-form.
-                        AST - does not show syntax, instead shows the underlying objects in a structured way
+                        ... our bytecode.
                     </aside>
                 </section>
 
@@ -323,16 +320,7 @@
                     <header class="lifecycle__header">Life cycle of a Piece of Python Code</header>
                     <img class="lifecycle__image" data-src="img/lifecycle/lifecycle-10.png">
                     <aside class="notes">
-                        <ul>
-                            <li>Parse source code into a parse tree</li>
-                            <li>Transform parse tree into an Abstract Syntax Tree</li>
-                            <li>Transform AST into a Control Flow Graph</li>
-                            <li>Emit bytecode based on the Control Flow Graph</li>
-                            <li>Interpret the bytecode</li>
-                        </ul>
-                        CSTs - Concrete Syntax Trees (a.k.a. Parse Trees) and ASTs - Abstract Syntax Trees (a.k.a. Syntax Trees)
-                        CST - a one-to-one mapping from the grammar to a tree-form.
-                        AST - does not show syntax, instead shows the underlying objects in a structured way
+                        And finally execute..
                     </aside>
                 </section>
 
@@ -340,16 +328,10 @@
                     <header class="lifecycle__header">Life cycle of a Piece of Python Code</header>
                     <img class="lifecycle__image" data-src="img/lifecycle/lifecycle-11.png">
                     <aside class="notes">
-                        <ul>
-                            <li>Parse source code into a parse tree</li>
-                            <li>Transform parse tree into an Abstract Syntax Tree</li>
-                            <li>Transform AST into a Control Flow Graph</li>
-                            <li>Emit bytecode based on the Control Flow Graph</li>
-                            <li>Interpret the bytecode</li>
-                        </ul>
-                        CSTs - Concrete Syntax Trees (a.k.a. Parse Trees) and ASTs - Abstract Syntax Trees (a.k.a. Syntax Trees)
-                        CST - a one-to-one mapping from the grammar to a tree-form.
-                        AST - does not show syntax, instead shows the underlying objects in a structured way
+                        ... to get our final output.
+                        <br><br>
+                        Now, this is quite the process with some very intricate steps,
+                        so we're going to focus on a few key parts.
                     </aside>
                 </section>
 
@@ -357,16 +339,7 @@
                     <header class="lifecycle__header">Life cycle of a Piece of Python Code</header>
                     <img class="lifecycle__image" data-src="img/lifecycle/lifecycle-12.png">
                     <aside class="notes">
-                        <ul>
-                            <li>Parse source code into a parse tree</li>
-                            <li>Transform parse tree into an Abstract Syntax Tree</li>
-                            <li>Transform AST into a Control Flow Graph</li>
-                            <li>Emit bytecode based on the Control Flow Graph</li>
-                            <li>Interpret the bytecode</li>
-                        </ul>
-                        CSTs - Concrete Syntax Trees (a.k.a. Parse Trees) and ASTs - Abstract Syntax Trees (a.k.a. Syntax Trees)
-                        CST - a one-to-one mapping from the grammar to a tree-form.
-                        AST - does not show syntax, instead shows the underlying objects in a structured way
+                        Our source, the AST, and bytecode.
                     </aside>
                 </section>
             <!-- 3C -  WHAT IS AN AST? -->
@@ -406,9 +379,7 @@
                     <img class="tree__walkthru" data-src="img/ast-primer/walkthru-1.png">
                     <aside class="notes">
                         <ul>
-                            <li>Data structure with at least one node organized into a hierarchy</li>
                             <li>Trees have one <em>root</em> -- the top node</li>
-                            <li>All nodes except the root have a single unique parent</li>
                         </ul>
                     </aside>
                 </section>
@@ -418,9 +389,7 @@
                     <img class="tree__walkthru" data-src="img/ast-primer/walkthru-2.png">
                     <aside class="notes">
                         <ul>
-                            <li>Data structure with at least one node organized into a hierarchy</li>
-                            <li>Trees have one <em>root</em> -- the top node</li>
-                            <li>All nodes except the root have a single unique parent</li>
+                            <li>Nodes can branch off...</li>
                         </ul>
                     </aside>
                 </section>
@@ -430,9 +399,7 @@
                     <img class="tree__walkthru" data-src="img/ast-primer/walkthru-3.png">
                     <aside class="notes">
                         <ul>
-                            <li>Data structure with at least one node organized into a hierarchy</li>
-                            <li>Trees have one <em>root</em> -- the top node</li>
-                            <li>All nodes except the root have a single unique parent</li>
+                            <li>...to other nodes.</li>
                         </ul>
                     </aside>
                 </section>
@@ -442,9 +409,8 @@
                     <img class="tree__walkthru" data-src="img/ast-primer/walkthru-4.png">
                     <aside class="notes">
                         <ul>
-                            <li>Data structure with at least one node organized into a hierarchy</li>
-                            <li>Trees have one <em>root</em> -- the top node</li>
-                            <li>All nodes except the root have a single unique parent</li>
+                            <li>But each node except the root has a single unique parent</li>
+                            <li>So when we read this..</li>
                         </ul>
                     </aside>
                 </section>
@@ -454,9 +420,7 @@
                     <img class="tree__walkthru" data-src="img/ast-primer/walkthru-5.png">
                     <aside class="notes">
                         <ul>
-                            <li>Data structure with at least one node organized into a hierarchy</li>
-                            <li>Trees have one <em>root</em> -- the top node</li>
-                            <li>All nodes except the root have a single unique parent</li>
+                            <li>... we start at the top node...</li>
                         </ul>
                     </aside>
                 </section>
@@ -466,9 +430,7 @@
                     <img class="tree__walkthru" data-src="img/ast-primer/walkthru-6.png">
                     <aside class="notes">
                         <ul>
-                            <li>Data structure with at least one node organized into a hierarchy</li>
-                            <li>Trees have one <em>root</em> -- the top node</li>
-                            <li>All nodes except the root have a single unique parent</li>
+                            <li>... and work our way as far down our first branch...</li>
                         </ul>
                     </aside>
                 </section>
@@ -478,9 +440,7 @@
                     <img class="tree__walkthru" data-src="img/ast-primer/walkthru-7.png">
                     <aside class="notes">
                         <ul>
-                            <li>Data structure with at least one node organized into a hierarchy</li>
-                            <li>Trees have one <em>root</em> -- the top node</li>
-                            <li>All nodes except the root have a single unique parent</li>
+                            <li>...as we can, before we start on the next side...</li>
                         </ul>
                     </aside>
                 </section>
@@ -490,9 +450,7 @@
                     <img class="tree__walkthru" data-src="img/ast-primer/walkthru-8.png">
                     <aside class="notes">
                         <ul>
-                            <li>Data structure with at least one node organized into a hierarchy</li>
-                            <li>Trees have one <em>root</em> -- the top node</li>
-                            <li>All nodes except the root have a single unique parent</li>
+                            <li>...performing a ...</li>
                         </ul>
                     </aside>
                 </section>
@@ -502,9 +460,7 @@
                     <img class="tree__walkthru" data-src="img/ast-primer/walkthru-9.png">
                     <aside class="notes">
                         <ul>
-                            <li>Data structure with at least one node organized into a hierarchy</li>
-                            <li>Trees have one <em>root</em> -- the top node</li>
-                            <li>All nodes except the root have a single unique parent</li>
+                            <li>...depth first.. </li>
                         </ul>
                     </aside>
                 </section>
@@ -514,9 +470,7 @@
                     <img class="tree__walkthru" data-src="img/ast-primer/walkthru-10.png">
                     <aside class="notes">
                         <ul>
-                            <li>Data structure with at least one node organized into a hierarchy</li>
-                            <li>Trees have one <em>root</em> -- the top node</li>
-                            <li>All nodes except the root have a single unique parent</li>
+                            <li>...traversal.</li>
                         </ul>
                     </aside>
                 </section>
@@ -524,6 +478,9 @@
                 <section class="ast">
                     <header class="ast__header">Parse Tree vs AST</header>
                     <code class="snippet__code">1 + 2 * 3</code>
+                    <aside class="notes">
+                        Let's look at the difference between our two types of trees.
+                    </aside>
                 </section>
 
                 <section class="astprimer" data-transition="none">
@@ -531,6 +488,11 @@
                     <img class="astprimer__tree astprimer__tree--left" data-src="img/ast-primer/parsetree.png">
                     <img class="hidden astprimer__tree astprimer__tree--right" data-src="img/ast-primer/ast.png">
                     <code class="snippet__code">1 + 2 * 3</code>
+                    <aside class="notes">
+                        First, we have a parse tree for a very simple piece of code.
+                        <br><br>
+                        This is essentially a one-to-one mapping our our source code based on our language grammar in tree form
+                    </aside>
                 </section>
 
                 <section class="astprimer" data-transition="none">
@@ -538,6 +500,10 @@
                     <img class="astprimer__tree astprimer__tree--left" data-src="img/ast-primer/parsetree.png">
                     <img class="astprimer__tree astprimer__tree--right" data-src="img/ast-primer/ast.png">
                     <code class="snippet__code">1 + 2 * 3</code>
+                    <aside class="notes">
+                        Here we have an AST for the same piece of code.
+                        We leave behind syntactial specifics so we can instead focus on how underlying objects are structured
+                    </aside>
                 </section>
             <!-- 4 - AST AND DIS MODULES - PART 1 -->
                 <!--
@@ -551,8 +517,9 @@
                     <h2>Let's dig in.</h2>
                     <img class="dig__image" data-src="img/gifs/digging puppy tree.gif" />
                     <aside class="notes">
-                        We're going to walk through the the life cycle of a piece of Python code.
-
+                        Now that we have an understanding of the life cycle of a piece of Python code
+                        let's see how we can interact with the process ourselves.
+                        <br><br>
                         ** DRINK SOME WATER! 🚰🚰🚰 **
                     </aside>
                 </section>
@@ -609,6 +576,10 @@
                         <li>meta</li>
                         <li>codegen</li>
                     </ul>
+                    <aside class="notes">
+                        Some of these don't fully with with Python 3, but they work for the most part.
+                        Since we're all using Python 3 now, right?
+                    </aside>
                 </section>
 
                 <section class="demo ast-demo" data-transition="none">
@@ -655,6 +626,16 @@
                     <img class="snippet__tree snippet__tree--print" data-src="img/trees/print.png">
                     <img class="snippet__dis snippet__dis--print" data-src="img/dis/print.png">
                     <code class="snippet__code">print("may the force be with you")</code>
+                    <aside class="notes">
+                        Here's the AST and disassembled bytecode for a print statement, side by side.
+                        <br><br>
+                        This is pretty readable at this point! We can see that there's a single statement
+                        so we don't need any nesting.
+                        We'll call LOAD_NAME for our print function, LOAD_CONST for our string that we
+                        passed in, and then simple execute and retun.
+                        <br><br>
+                        Simple enough?
+                    </aside>
                 </section>
 
                 <section class="demo snippet" data-transition="none">
@@ -664,6 +645,9 @@
                         if a == 23: <br />
                             &nbsp;&nbsp;&nbsp;&nbsp;print("may the force be with you")
                     </code>
+                    <aside class="notes">
+                        But as we continue to add code, even just a simple if statement...
+                    </aside>
                 </section>
 
                 <section class="demo snippet" data-transition="none">
@@ -674,6 +658,13 @@
                         if a == 23: <br />
                             &nbsp;&nbsp;&nbsp;&nbsp;print("may the force be with you")
                     </code>
+                    <aside class="notes">
+                        ... or variable declaration, we see that our examples get progressively more complex,
+                        but our AST still helps us visualize the path that our code takes.
+                        <br><br>
+                        So what we wind up with in our AST or bytecode is not necessarily going to match our
+                        source code 1 to 1.
+                    </aside>
                 </section>
             <!-- 5 - CURRENT COMPILER OPTIMIZATIONS -->
                 <!--
@@ -684,6 +675,9 @@
                  -->
                 <section class="optimizations" data-transition="none">
                     <h2>Current Optimizations</h2>
+                    <aside class="notes">
+                        What sorts of compiler optimizations are affecting our bytecode?
+                    </aside>
                 </section>
 
                 <section class="optimizations" data-transition="none">
@@ -694,7 +688,8 @@
                         <li class="hidden">Few AST optimizations besides constant folding</li>
                     </ul>
                     <aside class="notes">
-                        The best way to optimize Python is to replace the compiler and/or interpreter, like PyPy, Jython, Cython, Numpy, IronPython, Stackless Python, even MicroPython
+                        The best way to optimize Python is to replace the implementation for another iterpreter,
+                        like PyPy, Jython, Cython, IronPython, Stackless Python, even MicroPython
                     </aside>
                 </section>
 
@@ -705,9 +700,6 @@
                         <li>Peephole Optimizer</li>
                         <li class="hidden">Few AST optimizations besides constant folding</li>
                     </ul>
-                    <aside class="notes">
-                        The best way to optimize Python is to replace the compiler and/or interpreter, like PyPy, Jython, Cython, Numpy, IronPython, Stackless Python, even MicroPython
-                    </aside>
                 </section>
 
                 <section class="optimizations" data-transition="none">
@@ -717,9 +709,6 @@
                         <li>Peephole Optimizer</li>
                         <li>Few AST optimizations besides constant folding</li>
                     </ul>
-                    <aside class="notes">
-                        The best way to optimize Python is to replace the compiler and/or interpreter, like PyPy, Jython, Cython, Numpy, IronPython, Stackless Python, even MicroPython
-                    </aside>
                 </section>
 
                 <section class="optimizations">
@@ -837,7 +826,6 @@
                     <aside class="notes">
                         To get major speed ups, you must change your implementation.
                         Python is actually a specification for a language that can be implemented in many different ways.
-                        SUCH AS: Jython, PyPy, Stackless
                     </aside>
                 </section>
             <!-- 8 - PRACTICAL/OPTIMIZATION EXAMPLES -->

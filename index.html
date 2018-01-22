@@ -63,7 +63,6 @@
                 <section>
                     <h4>We're going to cover:</h4>
                     <ul>
-                        <li>Why Python Internals matter</li>
                         <li>Life cycle of a piece of Python code</li>
                         <li>Inspecting Python code at various stages</li>
                         <li>Current Python optimizations</li>
@@ -125,20 +124,30 @@
                 <section class="overview">
                     <h2>From Source Code To Execution:</h2>
                     <aside class="notes">
-                        <ul><li>A brief overview of compiling a piece of Python code - from source code through bytecode and execution, focusing on the role of the AST. 5,000-foot overview. (3 minutes)
-                                <ul><li>Build an understanding of the broad steps it takes to compile a piece of Python code</li></ul>
-                        </li></ul>
+                        <ul>
+                            <li>A brief overview of compiling a piece of Python code - from source code through bytecode and execution, focusing on the role of the AST. 5,000-foot overview. (3 minutes)
+                            <li>Build an understanding of the broad steps it takes to compile a piece of Python code</li>
+                        </ul>
                     </aside>
                 </section>
 
                 <section class="overview" data-transition="none">
                     <header class="overview__header">From Source Code To Execution:</header>
-                    <h2>Q: Interpreted or compiled?</h2>
+                    <h3>Q: Interpreted or compiled?</h3>
                 </section>
 
                 <section class="overview" data-transition="none">
                     <header class="overview__header">From Source Code To Execution:</header>
-                    <h2>A: Both!<h2>
+                    <h3>A: Both!<h3>
+                    <aside class="notes">
+                        Compiling is generating the code objects, including the bytecode. Interpreting is making sense of the bytecode in order to actually make things happen. One of the ways in which Python is “dynamic” is that the same bytecode doesn’t always have the same effect.
+                    </aside>
+                </section>
+
+                <section class="overview" data-transition="none">
+                    <h4>Compiler → Generates Bytecode</h4>
+                    <h4 class="hidden">Interpreter → Executes Bytecode</h4>
+
                     <aside class="notes">
                         Compiling is generating the code objects, including the bytecode. Interpreting is making sense of the bytecode in order to actually make things happen. One of the ways in which Python is “dynamic” is that the same bytecode doesn’t always have the same effect.
                     </aside>
@@ -792,6 +801,7 @@
                     <ul>
                         <li>Bytecode is created using an AST</li>
                         <li class="hidden">Bytecode is stored in *.pyc or *.pyo files</li>
+                        <li class="hidden">VERY micro speed-ups</li>
                     </ul>
                     <aside class="notes">
                         <ul>
@@ -807,6 +817,7 @@
                     <ul>
                         <li>Bytecode is created using an AST</li>
                         <li>Bytecode is stored in *.pyc or *.pyo files</li>
+                        <li class="hidden">VERY micro speed-ups</li>
                     </ul>
                     <aside class="notes">
                         <ul>
@@ -814,6 +825,19 @@
                             <li>*.pyc files are standard bytecode files. *pyo files are generated when the -O flag is specified. This simply removes assert statements.</li>
                             <li>Python uses something called a magic number to determine if files have been changed since the last time bytecode was compiled.</li>
                         </ul>
+                    </aside>
+                </section>
+                <section class="bytecode" data-transition="none">
+                    <header class="bytecode__header">How The AST Affects Your Code</header>
+                    <ul>
+                        <li>Bytecode is created using an AST</li>
+                        <li>Bytecode is stored in *.pyc or *.pyo files</li>
+                        <li>VERY micro speed-ups</li>
+                    </ul>
+                    <aside class="notes">
+                        To get major speed ups, you must change your implementation.
+                        Python is actually a specification for a language that can be implemented in many different ways.
+                        SUCH AS: Jython, PyPy, Stackless
                     </aside>
                 </section>
             <!-- 8 - PRACTICAL/OPTIMIZATION EXAMPLES -->

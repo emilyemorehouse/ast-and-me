@@ -225,7 +225,6 @@
 
                     <aside class="notes">
                         <ul>
-                            <li>Compiler generates bytecode</li>
                             <li>Interpreter makes sense of the bytecode in order to execute your code</li>
                             <li>One of the ways in which Python is “dynamic” is that the same bytecode doesn’t always have the same effect.</li>
                         </ul>
@@ -577,7 +576,7 @@
                         <li>codegen</li>
                     </ul>
                     <aside class="notes">
-                        Some of these don't fully with with Python 3, but they work for the most part.
+                        Some of these don't fully work with Python 3, but they work for the most part.
                         Since we're all using Python 3 now, right?
                     </aside>
                 </section>
@@ -668,9 +667,9 @@
                         Here's the AST and disassembled bytecode for a print statement, side by side.
                         <br><br>
                         This is pretty readable at this point! We can see that there's a single statement
-                        so we don't need any nesting.
+                        so we don't need any nesting in our AST.
                         We'll call LOAD_NAME for our print function, LOAD_CONST for our string that we
-                        passed in, and then simple execute and return.
+                        passed in, and then simply execute and return.
                         <br><br>
                         Simple enough?
                     </aside>
@@ -700,8 +699,9 @@
                         ... or variable declaration, we see that our examples get progressively more complex,
                         but our AST still helps us visualize the path that our code takes.
                         <br><br>
-                        So what we wind up with in our AST or bytecode is not necessarily going to match our
-                        source code 1 to 1.
+                        However, wind up with in our AST or bytecode is not necessarily going to match our
+                        source code 1 to 1. There are certain shortcuts that our compiler takes when creating our
+                        bytecode, so let's take a look....
                     </aside>
                 </section>
             <!-- 5 - CURRENT COMPILER OPTIMIZATIONS -->
@@ -714,7 +714,7 @@
                 <section class="optimizations" data-transition="none">
                     <h2>Current Optimizations</h2>
                     <aside class="notes">
-                        What sorts of compiler optimizations are affecting our bytecode?
+                        ... at what sorts of compiler optimizations are affecting our bytecode.
                     </aside>
                 </section>
 
@@ -726,8 +726,12 @@
                         <li class="hidden">Few AST optimizations besides constant folding</li>
                     </ul>
                     <aside class="notes">
+                        Python's compiler is purposefully simple, or as simple as can be.
+                        <br><br>
                         The best way to optimize Python is to replace the implementation for another interpreter,
-                        like PyPy, Jython, Cython, IronPython, Stackless Python, even MicroPython
+                        like PyPy, Jython, Cython, IronPython, Stackless Python, even MicroPython.
+                        <br><br>
+                        Python, the language, can be completely independent of the implementation used to bring the language to life.
                     </aside>
                 </section>
 

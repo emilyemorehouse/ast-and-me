@@ -57,7 +57,8 @@ section.has-light-background, section.has-light-background h1, section.has-light
     vertical-align: middle;
     max-height: 100%; }
     .reveal .astprimer__tree--left {
-      margin: 50px 20px 30px 0; }
+      margin: 50px 20px 30px 0;
+      max-width: 35%; }
     .reveal .astprimer__tree--right {
       margin: 50px 0 30px 20px; }
   .reveal .ast-demo {

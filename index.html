@@ -128,7 +128,7 @@
                     <aside class="notes">
                         What we're going to cover in this talk:
                         <ul>
-                            <li>Practical applications of using ASTS both in and outside of the Python world.</li>
+                            <li>AND Practical applications of using ASTS both in and outside of the Python world.</li>
                         </ul>
                     </aside>
                 </section>
@@ -315,7 +315,7 @@
                     <header class="lifecycle__header">Life cycle of a Piece of Python Code</header>
                     <img class="lifecycle__image" data-src="img/lifecycle/lifecycle-10.png">
                     <aside class="notes">
-                        And finally execute..
+                        The CPython virtual machine then executes the bytecode..
                     </aside>
                 </section>
 
@@ -345,6 +345,9 @@
                 <section class="ast">
                     <header class="ast__header">What is an Abstract Syntax Tree?</header>
                     <p>Tree representing the structure of your source code.</p>
+                    <aside class="notes">
+                        An AST is a structural representation of your code in a tree format where every node represents a language construct (e.g. expressions, statements, variables, literals etc)
+                    </aside>
                 </section>
 
                 <section class="tree">
@@ -465,7 +468,7 @@
                     <img class="tree__walkthru" data-src="img/ast-primer/walkthru-10.png">
                     <aside class="notes">
                         <ul>
-                            <li>...traversal.</li>
+                            <li>...traversal. (pause to show full tree)</li>
                         </ul>
                     </aside>
                 </section>
@@ -496,8 +499,12 @@
                     <img class="astprimer__tree astprimer__tree--right" data-src="img/ast-primer/ast.png">
                     <code class="snippet__code">(1 + 2) * 3</code>
                     <aside class="notes">
-                        Here we have an AST for the same piece of code.
-                        We leave behind syntactical specifics so we can instead focus on how underlying objects are structured
+                        <p>Here we have an AST for the same piece of code.
+                        We leave behind syntactical specifics so we can instead focus on how underlying objects are structured and the true meaning of the code</p>
+
+                        <p>It's important to note that there is information that you lose when moving from a parse tree to an abstract syntax tree, and that's very much on purpose.</p>
+
+                        <p>A CST has all of the information from your source code, including things like comments, whereas an AST is sort of stripped down and simplified. Thus, ASTs are simpler and easier to work with, but may not have all the information you want for certain applications.</p>
                     </aside>
                 </section>
             <!-- 4 - AST AND DIS MODULES - PART 1 -->
@@ -704,7 +711,7 @@
                         ... or variable declaration, we see that our examples get progressively more complex,
                         but our AST still helps us visualize the path that our code takes.
                         <br><br>
-                        However, wind up with in our AST or bytecode is not necessarily going to match our
+                        However, a caveat to all of this is that what we wind up with in our AST or bytecode is not necessarily going to match our
                         source code 1 to 1. There are certain shortcuts that our compiler takes when creating our
                         bytecode, so let's take a look....
                     </aside>
@@ -766,7 +773,6 @@
                     <header class="optimizations__header">Peephole Optimizations</header>
                     <p>Looking around without moving your head.</p>
                     <aside class="notes">
-                        Working on moving the peephole optimizer from standalone, post-AST parsing to within AST generation
                     </aside>
                 </section>
 
@@ -777,7 +783,6 @@
                         y = x + 2
                     </code>
                     <aside class="notes">
-                        Working on moving the peephole optimizer from standalone, post-AST parsing to within AST generation
                     </aside>
                 </section>
 
@@ -785,7 +790,6 @@
                     <header class="optimizations__header">Peephole Optimizations</header>
                     <code>y = 1 + 2</code>
                     <aside class="notes">
-                        Working on moving the peephole optimizer from standalone, post-AST parsing to within AST generation
                     </aside>
                 </section>
 
@@ -794,7 +798,8 @@
                     <img class="snippet__tree" data-src="img/dis/pre-peephole.png">
                     <img class="snippet__dis" data-src="img/dis/post-peephole.png">
                     <aside class="notes">
-                        Working on moving the peephole optimizer from standalone, post-AST parsing to within AST generation
+                        One of the other interesting examples of a peephole optimization is the example seen here. Essentially,
+                        the optimzation takes excessive or redundant logic and simplifies it for you.
                     </aside>
                 </section>
 
@@ -814,12 +819,18 @@
                     <img class="snippet__tree snippet__tree--demo" data-src="img/trees/pre-fold.png">
                     <img class="snippet__dis snippet__dis--demo" data-src="img/dis/pre-fold.png">
                     <code class="snippet__code">a = 2 * 3</code>
+                    <aside class="notes">
+                        Now, not all languages do this, and sometimes don't evaulate all expressions into constants, but a simple example of this is taking 2 times 3...
+                    </aside>
                 </section>
 
                 <section class="demo snippet" data-transition="none">
                     <img class="snippet__tree snippet__tree--demo" data-src="img/trees/post-fold.png">
                     <img class="snippet__dis snippet__dis--demo" data-src="img/dis/post-fold.png">
                     <code class="snippet__code">a = 6</code>
+                    <aside class="notes">
+                        ...and replacing it with 6.
+                    </aside>
                 </section>
             <!-- 6 - AST AND DIS MODULES - PART 2 TODO -->
             <!-- 7 - AST -> BYTECODE -> RUNTIME -->

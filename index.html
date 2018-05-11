@@ -592,14 +592,20 @@
                     </ul>
                     <aside class="notes">
                         Some of these don't fully work with Python 3, but they work for the most part.
-                        Since we're all using Python 3 now, right?
+                    </aside>
+                </section>
+
+                <section class="demo ast-demo" data-transition="none">
+                    <img class="ast-demo__code" data-src="img/demo/0 - import.png" />
+                    <aside class="notes">
+                        We'll first import the built-in modules that we need.
                     </aside>
                 </section>
 
                 <section class="demo ast-demo" data-transition="none">
                     <img class="ast-demo__code" data-src="img/demo/1 - source.png" />
                     <aside class="notes">
-                        We'll start with a very simple piece of Python code - a print statement
+                        Then we'll start with a very simple piece of Python code - a print statement
                         that takes a string as its argument.
                         <br><br>
                         We can then generate its AST...
@@ -651,7 +657,10 @@
                 </section>
 
                 <section class="demo ast-demo" data-transition="none">
-                    <img class="ast-demo__code" data-src="img/demo/5 - eval.png" />
+                    <img class="ast-demo__code" data-src="img/demo/5 - exec.png" />
+                    <aside class="notes">
+                        ... which we can now run using `exec`.
+                    </aside>
                     <aside class="notes">
                         ... which we can now run using `eval`.
                     </aside>
@@ -660,13 +669,13 @@
                 <section class="demo ast-demo" data-transition="none">
                     <img class="ast-demo__code" data-src="img/demo/6 - pretty bytecode.png" />
                     <aside class="notes">
-                        Let's take a closer look at that bytecode though, because it wasn't very readable when we first saw it. We can force the interpreter to show us bytecode that's more legible to humans.
+                        Let's go back and take a closer look at out bytecode. We can force the interpreter to show us bytecode that's more legible to humans.
                         <br><br>Somewhere along the lines, our compiler makes sense of these bytes, but it would take a lot of time for us to go through the giant switch statement that handles opcodes to figure it our ourselves.
                     </aside>
                 </section>
 
                 <section class="demo ast-demo" data-transition="none">
-                    <img class="ast-demo__code" data-src="img/demo/7 - dis better.png" />
+                    <img class="ast-demo__code" data-src="img/demo/7 - dis.png" />
                     <aside class="notes">
                         We can use Python's disassembler to help us out. We can now see a clear depiction of what is going on -
                         <br><br>

@@ -18,6 +18,8 @@ section.has-light-background, section.has-light-background h1, section.has-light
     font-size: 38px; }
     .reveal .ast__header {
       top: -100px; }
+  .reveal .code-objects__header {
+    top: -87px; }
   .reveal .tree {
     font-size: 38px; }
     .reveal .tree__header {
@@ -44,8 +46,10 @@ section.has-light-background, section.has-light-background h1, section.has-light
     font-size: 40px; }
     .reveal .applications__header {
       top: -40px; }
-  .reveal .applicationsoutside__header {
-    top: -50px; }
+  .reveal .applicationsoutside {
+    font-size: 35px; }
+    .reveal .applicationsoutside__header {
+      top: -40px; }
   .reveal .demo__header {
     top: -142px; }
   .reveal .astprimer__header {

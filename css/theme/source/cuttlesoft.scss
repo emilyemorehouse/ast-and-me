@@ -75,6 +75,12 @@ section.has-light-background {
         }
     }
 
+    .code-objects {
+        &__header {
+            top: -87px;
+        }
+    }
+
     .tree {
         font-size: 38px;
         &__header {
@@ -115,14 +121,17 @@ section.has-light-background {
 
     .applications {
         font-size: 40px;
+
         &__header {
             top: -40px;
         }
     }
 
     .applicationsoutside {
+        font-size: 35px;
+
         &__header {
-            top: -50px;
+            top: -40px;
         }
     }
 
